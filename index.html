@@ -72,6 +72,7 @@
     }
     .btn-3d:hover {
       transform: translateY(-2px) scale(1.02);
+      filter: brightness(1.05);
       box-shadow:
         0 16px 32px rgba(0, 0, 0, 0.45),
         0 4px 10px rgba(0, 0, 0, 0.35),
@@ -79,6 +80,7 @@
     }
     .btn-3d:active {
       transform: translateY(1px) scale(0.99);
+      filter: brightness(0.97);
       box-shadow:
         0 6px 15px rgba(0, 0, 0, 0.3),
         0 2px 4px rgba(0, 0, 0, 0.25),
@@ -223,7 +225,7 @@
           </div>
 
           <div id="auth-logged-in" class="hidden relative">
-            <button onclick="toggleUserMenu()" class="flex items-center gap-2 text-slate-100 hover:text-white px-3 py-1 rounded-full hover:bg-white/10 transition">
+            <button onclick="toggleUserMenu()" class="flex items-center gap-2 text-slate-100 hover:text-white px-3 py-1 rounded-full hover:bg:white/10 transition">
               <div id="user-avatar" class="w-8 h-8 bg-red-600 rounded-full flex items-center justify-center text-sm font-bold">
                 U
               </div>
@@ -674,7 +676,8 @@
     /***********************
      * SIMPLE DATA STORAGE *
      ***********************/
-    const STORAGE_KEY = 'ruw_data_v1';
+    // NEW storage key so any old real-company data in localStorage doesn’t show
+    const STORAGE_KEY = 'ruw_data_v2_fake_wichita';
 
     let allData = [];
     let jobs = [];
@@ -721,123 +724,124 @@
 
     /***********************
      * SAMPLE DATA (10+10) *
+     * ALL FAKE EMPLOYERS  *
      ***********************/
     const sampleJobs = [
       {
         id: 'job1',
         type: 'job',
-        title: 'Aviation',
-        company: 'Fake AeroSystems',
-        location: 'Wichita, KS - South Plant',
+        title: 'Sheet Metal Technician',
+        company: 'Air Capital Structures',
+        location: 'South Wichita, KS',
         jobType: 'Full-time',
         salary: '$22 - $28/hr',
-        description: 'Build and assemble structural components for commercial aircraft in Wichita’s aviation hub.',
-        requirements: '1+ year sheet metal or mechanical experience, ability to read blueprints.',
-        contact: 'jobs@fakeaviaion.com',
+        description: 'Build and assemble structural components for fictional aircraft projects right here in Wichita.',
+        requirements: '1+ year mechanical or sheet metal experience, ability to read simple prints.',
+        contact: 'hiring@aircapitalstructures.fake',
         createdAt: Date.now() - 1 * 86400000
       },
       {
         id: 'job2',
         type: 'job',
-        title: 'Tesla Sales Consultant',
-        company: 'Elons Dealership',
-        location: 'West Kellogg, Wichita, KS',
+        title: 'Sales Consultant - EV & Trucks',
+        company: 'Prairie Star Motors',
+        location: 'West Kellogg area, Wichita, KS',
         jobType: 'Full-time',
-        salary: 'Base + Commission (Up to 6-figure potential)',
-        description: 'Help Wichita drivers get into the right Tesla car, truck, or spaceship while earning serious commission.',
-        requirements: 'People skills, coachable attitude, valid driver’s license.',
-        contact: 'careers@tesla.com',
+        salary: 'Base + Commission (uncapped)',
+        description: 'Help local drivers get into the right car, truck, or EV while building a strong repeat-and-referral business.',
+        requirements: 'Coachable, strong people skills, valid driver’s license.',
+        contact: 'careers@prairiestarmotors.fake',
         createdAt: Date.now() - 2 * 86400000
       },
       {
         id: 'job3',
         type: 'job',
         title: 'CNC Machinist',
-        company: 'Wichita Manufacturing',
+        company: 'Chisholm Trail Precision',
         location: 'North Wichita, KS',
         jobType: 'Full-time',
         salary: '$23 - $30/hr',
-        description: 'Set up and operate CNC equipment producing aerospace and industrial components.',
-        requirements: 'CNC experience, ability to use measurement tools, willingness to work 2nd shift.',
-        contact: 'hr@wichitaprecision.com',
+        description: 'Set up and operate CNC machines producing high-precision components for local manufacturers.',
+        requirements: 'CNC experience, basic inspection tools, willingness to work 2nd or 3rd shift.',
+        contact: 'shop@chisholmtrailprecision.fake',
         createdAt: Date.now() - 3 * 86400000
       },
       {
         id: 'job4',
         type: 'job',
-        title: 'Customer Service Representative',
-        company: 'ICT Credit Union',
+        title: 'Member Support Specialist',
+        company: 'River City Community Credit',
         location: 'Downtown Wichita, KS',
         jobType: 'Full-time',
         salary: '$17 - $19/hr + benefits',
-        description: 'Serve local members, open accounts, and help with loans and payments.',
-        requirements: 'Customer service experience, cash handling a plus.',
-        contact: 'jobs@wichitacu.org',
+        description: 'Serve local members, open accounts, and help families with loans and day-to-day banking.',
+        requirements: 'Customer-facing experience, cash handling a plus.',
+        contact: 'jobs@rivercitycommunity.fake',
         createdAt: Date.now() - 4 * 86400000
       },
       {
         id: 'job5',
         type: 'job',
-        title: 'Warehouse Supervisor',
-        company: 'Kansas Logistics Hub',
-        location: 'Wichita, KS - Industrial Park',
+        title: 'Warehouse Shift Lead',
+        company: 'ICT Freight Hub',
+        location: 'Industrial Park, Wichita, KS',
         jobType: 'Full-time',
         salary: '$50,000 - $60,000',
-        description: 'Lead a team handling inbound/outbound freight for a busy distribution center.',
-        requirements: '2+ years warehouse leadership, forklift experience.',
-        contact: 'careers@kslogistics.com',
+        description: 'Lead a small team handling inbound and outbound freight for a busy local distribution center.',
+        requirements: '2+ years warehouse leadership, forklift experience, safety focus.',
+        contact: 'apply@ictfreighthub.fake',
         createdAt: Date.now() - 5 * 86400000
       },
       {
         id: 'job6',
         type: 'job',
         title: 'Elementary Teacher',
-        company: 'USD 555 Wichita Public Schools',
+        company: 'Sunflower Ridge Academy',
         location: 'Wichita, KS',
         jobType: 'Full-time',
         salary: '$45,000 - $60,000',
-        description: 'Inspire K-5 students with engaging lessons in a Wichita public school.',
-        requirements: 'Kansas teaching license, Elementary Education.',
-        contact: 'teach@usd259.net',
+        description: 'Teach K-5 students in a neighborhood school that serves Wichita families.',
+        requirements: 'Teaching license (fictional), classroom experience preferred.',
+        contact: 'teach@sunflowerridgeacademy.fake',
         createdAt: Date.now() - 6 * 86400000
       },
       {
         id: 'job7',
         type: 'job',
         title: 'Registered Nurse (RN)',
-        company: 'Central Care Hospital',
+        company: 'Prairie Heart Medical Center',
         location: 'Central Wichita, KS',
         jobType: 'Full-time',
         salary: '$32 - $42/hr',
-        description: 'Provide quality patient care in a fast-paced hospital environment.',
-        requirements: 'Active RN license in Kansas, BLS/ACLS preferred.',
-        contact: 'nursing@centralcarewichita.com',
+        description: 'Provide quality patient care in a busy, fictional medical center serving the metro area.',
+        requirements: 'RN license (demo), comfort with fast-paced environment.',
+        contact: 'nursing@prairieheartmedical.fake',
         createdAt: Date.now() - 7 * 86400000
       },
       {
         id: 'job8',
         type: 'job',
-        title: 'Restaurant Manager',
-        company: 'Old Town Pub',
-        location: 'Old Town, Wichita, KS',
+        title: 'Restaurant General Manager',
+        company: 'Old Town Smokehouse & Grill',
+        location: 'Old Town district, Wichita, KS',
         jobType: 'Full-time',
         salary: '$48,000 - $55,000 + bonus',
-        description: 'Run day-to-day operations at a busy Old Town restaurant/bar.',
-        requirements: '2+ years management in restaurant/retail, flexible hours.',
-        contact: 'jobs@oldtowngrill.com',
+        description: 'Run day-to-day operations at a high-energy local grill in Old Town.',
+        requirements: '2+ years restaurant or retail management, flexible schedule.',
+        contact: 'manager@oldtowngrill.fake',
         createdAt: Date.now() - 8 * 86400000
       },
       {
         id: 'job9',
         type: 'job',
-        title: 'Graphic Designer',
+        title: 'Graphic & Brand Designer',
         company: 'Keeper Creative Studio',
-        location: 'Delano District, Wichita, KS',
+        location: 'Near the river, Wichita, KS',
         jobType: 'Part-time',
         salary: '$25 - $35/hr',
-        description: 'Create branding and marketing materials for local businesses.',
-        requirements: 'Strong portfolio, Adobe Creative Cloud.',
-        contact: 'design@kotpcreative.com',
+        description: 'Design logos, social media graphics, and flyers for local Wichita businesses.',
+        requirements: 'Portfolio, Canva or Adobe skills, attention to detail.',
+        contact: 'design@keepercreative.fake',
         createdAt: Date.now() - 9 * 86400000
       },
       {
@@ -848,9 +852,9 @@
         location: 'Hybrid - Wichita, KS',
         jobType: 'Contract',
         salary: '$20 - $25/hr',
-        description: 'Help connect job seekers with employers, coordinate events, and manage online outreach.',
-        requirements: 'People person, social media comfort, organized.',
-        contact: 'james@riseupwichita.com',
+        description: 'Connect job seekers with employers, coordinate pop-up hiring events, and manage online outreach for Rise Up Wichita.',
+        requirements: 'People person, organized, social media comfort.',
+        contact: 'hello@riseupwichita.fake',
         createdAt: Date.now() - 10 * 86400000
       }
     ];
@@ -860,12 +864,12 @@
         id: 'seeker1',
         type: 'seeker',
         name: 'Sarah Johnson',
-        email: 'sarah.johnson@example.com',
+        email: 'sarah.johnson@example.fake',
         phone: '(316) 555-0123',
         location: 'West Wichita, KS',
-        summary: 'Marketing specialist who loves helping Wichita small businesses grow.',
-        experience: 'Marketing Coordinator at Prairie Marketing Group (2019-2024).',
-        education: 'BBA in Marketing, Wichita State University.',
+        summary: 'Marketing specialist who loves helping Wichita small businesses grow their brand.',
+        experience: 'Marketing Coordinator at Prairie Horizon Media (2019-2024, fictional).',
+        education: 'BBA in Marketing, ICT Metro University (fictional).',
         skills: 'Digital Marketing, Social Media, Email Campaigns, Canva',
         createdAt: Date.now() - 5 * 86400000
       },
@@ -873,12 +877,12 @@
         id: 'seeker2',
         type: 'seeker',
         name: 'Michael Rodriguez',
-        email: 'michael.rod@example.com',
+        email: 'michael.rod@example.fake',
         phone: '(316) 555-0456',
         location: 'North Wichita, KS',
-        summary: 'Full-stack developer focused on clean, fast web apps.',
-        experience: 'Junior Developer at ICT Tech Labs (2021-2024).',
-        education: 'BS Computer Science, Wichita State University.',
+        summary: 'Full-stack developer focused on clean, fast web apps that support local businesses.',
+        experience: 'Junior Developer at Flint Hills Tech Lab (2021-2024, fictional).',
+        education: 'BS Computer Science, Air Capital Tech University (fictional).',
         skills: 'JavaScript, Node.js, React, TailwindCSS',
         createdAt: Date.now() - 7 * 86400000
       },
@@ -886,12 +890,12 @@
         id: 'seeker3',
         type: 'seeker',
         name: 'Emily Chen',
-        email: 'emily.chen@example.com',
+        email: 'emily.chen@example.fake',
         phone: '(316) 555-0789',
         location: 'Downtown Wichita, KS',
-        summary: 'RN with emergency room experience and a heart for Wichita families.',
-        experience: 'Staff RN – Emergency Department at Central Care Hospital.',
-        education: 'BSN, Newman University.',
+        summary: 'RN with emergency room experience and a heart for families in the ICT area.',
+        experience: 'Staff RN – Cityview Medical Center (fictional ER).',
+        education: 'BSN, Prairie View Nursing College (fictional).',
         skills: 'Emergency Care, IV Therapy, Patient Education',
         createdAt: Date.now() - 6 * 86400000
       },
@@ -899,12 +903,12 @@
         id: 'seeker4',
         type: 'seeker',
         name: 'David Thompson',
-        email: 'david.thompson@example.com',
+        email: 'david.thompson@example.fake',
         phone: '(316) 555-0321',
         location: 'Haysville, KS',
-        summary: 'ASE-certified technician who keeps Wichita on the road.',
-        experience: 'Lead Technician at Midwest Auto Service (2016-2024).',
-        education: 'Automotive Technology – WATC.',
+        summary: 'ASE-style technician who keeps Wichita commuters on the road.',
+        experience: 'Lead Technician at Heartland Auto Garage (2016-2024, fictional).',
+        education: 'Automotive Technology – South Central Skills Institute (fictional).',
         skills: 'Diagnostics, Brakes, Electrical, Customer Service',
         createdAt: Date.now() - 12 * 86400000
       },
@@ -912,12 +916,12 @@
         id: 'seeker5',
         type: 'seeker',
         name: 'Jessica Martinez',
-        email: 'jessica.martinez@example.com',
+        email: 'jessica.martinez@example.fake',
         phone: '(316) 555-0654',
         location: 'South Wichita, KS',
-        summary: 'Elementary teacher passionate about literacy and STEM.',
-        experience: '3rd Grade Teacher – USD 259 (2020-2024).',
-        education: 'BS Elementary Education, Friends University.',
+        summary: 'Elementary teacher passionate about literacy, STEM, and Wichita community schools.',
+        experience: '3rd Grade Teacher – Maple Grove Learning Center (2020-2024, fictional).',
+        education: 'BS Elementary Education, Sunflower Heights University (fictional).',
         skills: 'Classroom Management, Reading Intervention, Google Classroom',
         createdAt: Date.now() - 3 * 86400000
       },
@@ -925,12 +929,12 @@
         id: 'seeker6',
         type: 'seeker',
         name: 'Andre Lewis',
-        email: 'andre.lewis@example.com',
+        email: 'andre.lewis@example.fake',
         phone: '(316) 555-0912',
         location: 'Andover, KS',
-        summary: 'Warehouse supervisor experienced in fast-paced distribution.',
-        experience: 'Shift Supervisor – Kansas Logistics Hub (2018-2024).',
-        education: 'Associate Degree in Business, Butler CC.',
+        summary: 'Warehouse supervisor experienced in high-volume distribution.',
+        experience: 'Shift Supervisor – ICT Logistics Center (2018-2024, fictional).',
+        education: 'Associate Degree in Business, Chisholm Valley College (fictional).',
         skills: 'Leadership, Inventory, Forklift, Safety',
         createdAt: Date.now() - 15 * 86400000
       },
@@ -938,12 +942,12 @@
         id: 'seeker7',
         type: 'seeker',
         name: 'Amanda Perez',
-        email: 'amanda.perez@example.com',
+        email: 'amanda.perez@example.fake',
         phone: '(316) 555-0990',
         location: 'Maize, KS',
-        summary: 'Experienced CSR who enjoys solving member problems.',
-        experience: 'Member Services – Wichita Credit Union.',
-        education: 'High School + on-the-job training.',
+        summary: 'Experienced customer service rep who enjoys solving member problems and building loyalty.',
+        experience: 'Member Services – Riverbank Community Finance (fictional).',
+        education: 'High School + extensive on-the-job training.',
         skills: 'Customer Service, Cash Handling, Cross-selling',
         createdAt: Date.now() - 9 * 86400000
       },
@@ -951,12 +955,12 @@
         id: 'seeker8',
         type: 'seeker',
         name: 'Tyler Brooks',
-        email: 'tyler.brooks@example.com',
+        email: 'tyler.brooks@example.fake',
         phone: '(316) 555-0444',
         location: 'Derby, KS',
-        summary: 'CNC machinist with a focus on aerospace quality.',
-        experience: 'CNC Operator – ICT Precision Machining.',
-        education: 'CNC certificate – WSU Tech.',
+        summary: 'CNC machinist with a focus on aerospace-style quality parts.',
+        experience: 'CNC Operator – River City Machining (fictional).',
+        education: 'CNC Certificate – ICT Skills Academy (fictional).',
         skills: 'CNC Programming, GD&T, Inspection',
         createdAt: Date.now() - 20 * 86400000
       },
@@ -964,12 +968,12 @@
         id: 'seeker9',
         type: 'seeker',
         name: 'Olivia Nguyen',
-        email: 'olivia.nguyen@example.com',
+        email: 'olivia.nguyen@example.fake',
         phone: '(316) 555-0777',
         location: 'East Wichita, KS',
-        summary: 'Graphic designer who loves Wichita skyline silhouettes.',
-        experience: 'Freelance designer for local coffee shops and churches.',
-        education: 'BFA Graphic Design, Wichita State.',
+        summary: 'Graphic designer who loves Wichita skyline silhouettes and bold local branding.',
+        experience: 'Freelance designer for local coffee shops and churches (fictional clients).',
+        education: 'BFA Graphic Design, Keeper Arts College (fictional).',
         skills: 'Branding, Logos, Social Graphics, Canva',
         createdAt: Date.now() - 2 * 86400000
       },
@@ -977,44 +981,30 @@
         id: 'seeker10',
         type: 'seeker',
         name: 'Marcus Hill',
-        email: 'marcus.hill@example.com',
+        email: 'marcus.hill@example.fake',
         phone: '(316) 555-0111',
         location: 'Park City, KS',
-        summary: 'Production worker with experience on aviation assembly lines.',
-        experience: 'Assembler – Aircraft Structures Co. (2019-2024).',
+        summary: 'Production worker with experience on aviation-style assembly lines.',
+        experience: 'Assembler – Plains Aero Components (fictional).',
         education: 'High School, on-the-job training.',
         skills: 'Assembly, Power Tools, Safety, Teamwork',
         createdAt: Date.now() - 11 * 86400000
       }
     ];
 
-    /* SAMPLE USERS (INCLUDES YOUR ADMIN LOGIN) */
-    const sampleUsers = [
-      {
-        id: 'user-owner',
-        type: 'user',
-        userType: 'poster',
-        name: 'James Davis',
-        email: 'icrushgoasl@gmail.com', // login email (case-insensitive)
-        password: 'JMD.8789',
-        location: 'Wichita, KS',
-        company: 'Rise Up Wichita',
-        bio: 'Site owner and local job connector.',
-        createdAt: Date.now() - 86400000
-      },
-      {
-        id: 'user-sample-seeker',
-        type: 'user',
-        userType: 'seeker',
-        name: 'Sample Job Seeker',
-        email: 'seeker@example.com',
-        password: 'password123',
-        location: 'Wichita, KS',
-        company: '',
-        bio: 'Demo account for job seekers.',
-        createdAt: Date.now() - 2 * 86400000
-      }
-    ];
+    // Default user for you: poster login
+    const defaultJamesUser = {
+      id: 'user-james-default',
+      type: 'user',
+      userType: 'poster',
+      name: 'James Davis',
+      email: 'icrushgoasl@gmail.com', // login is case-insensitive
+      password: 'JMD.8789',
+      location: 'Wichita, KS',
+      company: 'Rise Up Wichita',
+      bio: 'Local job connector and sales professional.',
+      createdAt: Date.now() - 1000
+    };
 
     /*********************
      * AUTH / SESSION    *
@@ -1056,7 +1046,6 @@
       const id = name + '-section';
       const el = document.getElementById(id);
       if (el) el.classList.add('active');
-      // close modals just in case
       closeLoginModal();
       closeSignupModal();
       closeUserMenu();
@@ -1413,7 +1402,7 @@
         userType: type,
         name,
         email,
-        password, // stored in localStorage only – demo only
+        password, // demo only, stored in localStorage
         location,
         company: type === 'poster' ? company : '',
         bio,
@@ -1450,7 +1439,7 @@
     function initGoogleLogin() {
       if (!window.google || !google.accounts || !google.accounts.id) return;
 
-      // TODO: replace with your real Google Client ID
+      // Replace this with your real Google Client ID if you want live Google auth
       const CLIENT_ID = 'YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com';
 
       google.accounts.id.initialize({
@@ -1489,7 +1478,7 @@
             userType: 'seeker',
             name: name || 'Google User',
             email,
-            password: '', // no local password, they use Google
+            password: '',
             location: 'Wichita, KS',
             company: '',
             bio: 'Signed in with Google',
@@ -1612,7 +1601,6 @@
     }
 
     function autoFillResumeFromText(text) {
-      // simple heuristics, not perfect but gives that "magic" feeling
       const lines = text.split(/\r?\n/).map(l => l.trim()).filter(Boolean);
       if (lines.length) {
         document.getElementById('res-name').value = lines[0];
@@ -1626,7 +1614,6 @@
 
       document.getElementById('res-location').value = 'Wichita, KS';
 
-      // crude splits for sections
       const lower = text.toLowerCase();
       const summaryIdx = lower.indexOf('summary');
       const experienceIdx = lower.indexOf('experience');
@@ -1675,26 +1662,32 @@
      * INIT              *
      *********************/
     function ensureSampleData() {
+      // If nothing saved yet, seed everything with fake data and your default user
       if (!jobs.length && !seekers.length && !users.length) {
-        // Add sample jobs, seekers, and users
-        allData = [...sampleJobs, ...sampleSeekers, ...sampleUsers];
+        allData = [...sampleJobs, ...sampleSeekers, defaultJamesUser];
         saveAllData();
         loadAllData();
+      } else {
+        // Make sure James exists at least once
+        const exists = users.some(u => u.email === defaultJamesUser.email);
+        if (!exists) {
+          allData.push(defaultJamesUser);
+          saveAllData();
+          loadAllData();
+        }
       }
     }
 
     document.addEventListener('DOMContentLoaded', () => {
       loadAllData();
       ensureSampleData();
-      loadAllData(); // reload after sample
+      loadAllData();
       loadSession();
       refreshUI();
       showSection('home');
 
-      // Initialize Google button (will only work once you add a real Client ID)
       setTimeout(initGoogleLogin, 800);
     });
-
   </script>
 </body>
 </html>
