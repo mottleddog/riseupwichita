@@ -563,36 +563,40 @@ function updateItem(item) {
 
 /* FAKE JOBS */
 const sampleJobs = [
-  { id:'j1',type:'job',title:'CNC Machine Operator',company:'Prairie Sky Manufacturing',location:'North Wichita, KS',jobType:'Full-time',salary:'$22 - $29/hr',description:'Operate CNC machinery to produce precision components.',requirements:'Basic CNC experience preferred.',contact:'apply@prairieskymfg.com',createdAt:Date.now()-86400000 },
-  { id:'j2',type:'job',title:'Warehouse Associate',company:'Heartland Logistics Hub',location:'ICT Industrial District',jobType:'Full-time',salary:'$17 - $20/hr',description:'Assist with freight, stocking, and inventory.',requirements:'Lift 50 lbs, forklift a plus.',contact:'jobs@heartlandhub.com',createdAt:Date.now()-172800000 },
-  { id:'j3',type:'job',title:'Member Support Rep',company:'Tallgrass Community Credit Union',location:'Downtown Wichita',jobType:'Full-time',salary:'$18 - $21/hr',description:'Help customers with accounts and payments.',requirements:'Friendly, organized.',contact:'careers@tallgrassccu.com',createdAt:Date.now()-259200000 },
-  { id:'j4',type:'job',title:'HVAC Assistant',company:'ICT Home Services Group',location:'East Wichita, KS',jobType:'Full-time',salary:'$16 - $18/hr',description:'Assist HVAC techs on installs and repairs.',requirements:'Reliable transportation.',contact:'hr@icthomeservices.com',createdAt:Date.now()-345600000 },
-  { id:'j5',type:'job',title:'Sheet Metal Helper',company:'Flint River Fabrication',location:'South Wichita, KS',jobType:'Full-time',salary:'$19 - $24/hr',description:'Support metal fabrication team.',requirements:'Mechanical aptitude.',contact:'shop@flintriverfab.com',createdAt:Date.now()-432000000 },
-  { id:'j6',type:'job',title:'Retail Sales Associate',company:'Red Barn Retail & Outdoors',location:'NewMarket Square Area',jobType:'Part-time',salary:'$14 - $16/hr',description:'Help customers find outdoor gear.',requirements:'Basic sales ability.',contact:'retail@redbarnoutdoors.com',createdAt:Date.now()-518400000 },
-  { id:'j7',type:'job',title:'Classroom Aide',company:'Meadowbrook Learning Center',location:'West Wichita, KS',jobType:'Full-time',salary:'$15 - $17/hr',description:'Assist teachers in daily classroom activities.',requirements:'Enjoy working with kids.',contact:'staff@meadowbrooklc.com',createdAt:Date.now()-604800000 },
-  { id:'j8',type:'job',title:'Delivery Driver',company:'SkyTrail Transport',location:'Wichita Metro Area',jobType:'Contract',salary:'$150 - $230/day',description:'Deliver packages on assigned routes.',requirements:'Valid license.',contact:'dispatch@skytrailtransport.com',createdAt:Date.now()-691200000 },
-  { id:'j9',type:'job',title:'Patient Care Assistant',company:'Sunridge Senior Living',location:'West Wichita, KS',jobType:'Full-time',salary:'$15 - $19/hr',description:'Assist elderly residents with care.',requirements:'Compassionate.',contact:'apply@sunridgesl.com',createdAt:Date.now()-777600000 },
-  { id:'j10',type:'job',title:'IT Support Technician',company:'Clearwater Digital Solutions',location:'Near WSU Tech',jobType:'Full-time',salary:'$19 - $25/hr',description:'Provide technical support to clients.',requirements:'Basic IT knowledge.',contact:'it@clearwaterds.com',createdAt:Date.now()-864000000 }
+  { id:'j1',type:'job',title:'CNC Machine Operator',company:'Prairie Sky Manufacturing',location:'North Wichita, KS',jobType:'Full-time',salary:'$22 - $29/hr',description:'Operate CNC equipment to fabricate metal parts.',requirements:'CNC experience preferred.',contact:'apply@prairieskymfg.com',createdAt:Date.now()-86400000 },
+  { id:'j2',type:'job',title:'Warehouse Associate',company:'ICT Distribution Center',location:'South Wichita, KS',jobType:'Full-time',salary:'$17 - $20/hr',description:'Assist with pallet loading, freight movement and inventory.',requirements:'Lift 50 lbs.',contact:'jobs@ictdc.com',createdAt:Date.now()-172800000 },
+  { id:'j3',type:'job',title:'Customer Support Rep',company:'Flint River Credit Union',location:'Downtown Wichita',jobType:'Full-time',salary:'$18 - $21/hr',description:'Help customers with account questions and billing.',requirements:'People-friendly.',contact:'hr@flintrivercu.com',createdAt:Date.now()-259200000 },
+  { id:'j4',type:'job',title:'HVAC Assistant',company:'AirTech Home Services',location:'East Wichita, KS',jobType:'Full-time',salary:'$16 - $19/hr',description:'Assist HVAC techs with installs and repairs.',requirements:'Valid DL.',contact:'team@airtechwichita.com',createdAt:Date.now()-360000000 },
+  { id:'j5',type:'job',title:'Metal Fabrication Helper',company:'Westside Fabrication Co.',location:'West Wichita',jobType:'Full-time',salary:'$18 - $23/hr',description:'Support fabrication crew in cutting and shaping materials.',requirements:'Mechanical aptitude.',contact:'shop@westsidefab.com',createdAt:Date.now()-480000000 },
+
+  { id:'j6',type:'job',title:'Delivery Driver',company:'SkyLine Logistics',location:'Wichita Metro Area',jobType:'Contract',salary:'$150 - $240/day',description:'Deliver packages on daily routes.',requirements:'Reliable vehicle.',contact:'dispatch@skylineict.com',createdAt:Date.now()-550000000 },
+  { id:'j7',type:'job',title:'Retail Associate',company:'Riverfront Outfitters',location:'NewMarket Square',jobType:'Part-time',salary:'$14 - $16/hr',description:'Assist customers and stock items.',requirements:'Customer service experience.',contact:'retail@riverfrontoutfitters.com',createdAt:Date.now()-620000000 },
+  { id:'j8',type:'job',title:'Auto Detail Specialist',company:'Heartland Auto Spa',location:'NW Wichita',jobType:'Full-time',salary:'$15 - $18/hr',description:'Interior and exterior vehicle detailing.',requirements:'Attention to detail.',contact:'apply@heartlandautospakw.com',createdAt:Date.now()-690000000 },
+  { id:'j9',type:'job',title:'Classroom Aide',company:'Meadow Lane Learning Center',location:'Wichita, KS',jobType:'Full-time',salary:'$15 - $17/hr',description:'Assist teachers with daily class activities.',requirements:'Enjoy working with kids.',contact:'staff@meadowlaneedu.com',createdAt:Date.now()-760000000 },
+  { id:'j10',type:'job',title:'IT Support Tech',company:'ClearPath Solutions',location:'WSU Tech Area',jobType:'Full-time',salary:'$20 - $26/hr',description:'Provide tech support to clients.',requirements:'Basic IT knowledge.',contact:'support@clearpathict.com',createdAt:Date.now()-830000000 }
 ];
 
 /* FAKE SEEKERS */
 const sampleSeekers = [
   {id:'s1',type:'seeker',name:'Jordan M.',role:'Sheet Metal Apprentice',location:'Wichita, KS'},
   {id:'s2',type:'seeker',name:'Lisa T.',role:'Customer Service Specialist',location:'Wichita, KS'},
-  {id:'s3',type:'seeker',name:'Robert G.',role:'Forklift Operator',location:'Wichita, KS'},
+  {id:'s3',type:'seeker',name:'Marcus R.',role:'CNC Helper',location:'Wichita, KS'},
   {id:'s4',type:'seeker',name:'Tasha B.',role:'Classroom Aide',location:'Wichita, KS'},
-  {id:'s5',type:'seeker',name:'Miguel A.',role:'Auto Service Helper',location:'Wichita, KS'},
-  {id:'s6',type:'seeker',name:'Henry S.',role:'General Laborer',location:'Wichita, KS'},
-  {id:'s7',type:'seeker',name:'Kendra W.',role:'Administrative Assistant',location:'Wichita, KS'},
-  {id:'s8',type:'seeker',name:'Bryan K.',role:'Delivery Driver',location:'Wichita, KS'},
-  {id:'s9',type:'seeker',name:'Elena R.',role:'Home Health Aide',location:'Wichita, KS'},
-  {id:'s10',type:'seeker',name:'Marcus J.',role:'CNC Trainee',location:'Wichita, KS'},
-  {id:'s11',type:'seeker',name:'Shelby P.',role:'Retail Associate',location:'Wichita, KS'},
-  {id:'s12',type:'seeker',name:'Anthony L.',role:'Security Guard',location:'Wichita, KS'},
-  {id:'s13',type:'seeker',name:'Dana F.',role:'Call Center Support',location:'Wichita, KS'},
+  {id:'s5',type:'seeker',name:'Andre C.',role:'General Laborer',location:'Wichita, KS'},
+
+  {id:'s6',type:'seeker',name:'Megan H.',role:'Retail Associate',location:'Wichita, KS'},
+  {id:'s7',type:'seeker',name:'Henry S.',role:'Warehouse Worker',location:'Wichita, KS'},
+  {id:'s8',type:'seeker',name:'Kendra W.',role:'Admin Assistant',location:'Wichita, KS'},
+  {id:'s9',type:'seeker',name:'Bryan K.',role:'Delivery Driver',location:'Wichita, KS'},
+  {id:'s10',type:'seeker',name:'Elena R.',role:'Home Health Aide',location:'Wichita, KS'},
+
+  {id:'s11',type:'seeker',name:'Sam D.',role:'Auto Detailer',location:'Wichita, KS'},
+  {id:'s12',type:'seeker',name:'Naomi C.',role:'Hospitality Worker',location:'Wichita, KS'},
+  {id:'s13',type:'seeker',name:'Anthony L.',role:'Security Guard',location:'Wichita, KS'},
   {id:'s14',type:'seeker',name:'Ethan H.',role:'Maintenance Tech',location:'Wichita, KS'},
-  {id:'s15',type:'seeker',name:'Naomi C.',role:'Hospitality Worker',location:'Wichita, KS'}
+  {id:'s15',type:'seeker',name:'Rachel S.',role:'Receptionist',location:'Wichita, KS'}
 ];
+
 
 /* SECTION SWITCHING */
 function showSection(id) {
