@@ -229,317 +229,321 @@
         </div>
       </div>
     </section>
-<h2 class="text-3xl md:text-4xl font-bold text-blue-900 mb-3">Featured Wichita Talent</h2>
-<p class="text-slate-600 text-lg">Local job seekers ready to work right now.</p>
-</div>
-<div id="featured-seekers" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
-<div class="text-center mt-8">
-  <button onclick="guardResumeBuilder()" class="btn-3d bg-blue-600 text-white rounded-full px-8 py-3 font-semibold">
-    Create Your Profile
-  </button>
-</div>
-</div>
-</section>
 
     <!-- FEATURED SEEKERS -->
-    <section class="bg-blue-50 py-16 border-t border-slate-200">
+    <section class="bg-white py-16">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-10">
-          <h2 class="text-3
-</section>
-</main>
-
-<!-- JOBS SECTION -->
-<section id="jobs-section" class="section bg-slate-900 pt-24 pb-16 text-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-10">
-      <h2 class="text-3xl md:text-4xl font-bold mb-3">Available Positions</h2>
-      <p class="text-slate-300 text-lg">Search by title, company, or neighborhood.</p>
-    </div>
-
-    <div class="mb-8 flex flex-wrap gap-3 justify-center">
-      <select id="job-type-filter" class="bg-white text-slate-900 px-4 py-2 rounded-full text-sm border border-slate-300 shadow-sm">
-        <option value="">All Job Types</option>
-        <option value="Full-time">Full-time</option>
-        <option value="Part-time">Part-time</option>
-        <option value="Contract">Contract</option>
-        <option value="Seasonal">Seasonal</option>
-      </select>
-      <input id="job-search" type="text" placeholder="Search jobs..." class="bg-white text-slate-900 px-4 py-2 rounded-full border border-slate-300 shadow-sm w-64 text-sm" />
-      <button onclick="filterJobs()" class="btn-3d bg-red-600 text-white px-6 py-2 rounded-full text-sm font-semibold">
-        Search
-      </button>
-    </div>
-
-    <div id="jobs-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
-    <div id="no-jobs" class="text-center text-slate-400 mt-10 hidden">No jobs yet. Be the first to post.</div>
-  </div>
-</section>
-
-<!-- SEEKERS SECTION -->
-<section id="seekers-section" class="section bg-slate-900 pt-24 pb-16 text-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-10">
-      <h2 class="text-3xl md:text-4xl font-bold mb-3">Job Seekers</h2>
-      <p class="text-slate-300 text-lg">Local people ready to work in Wichita.</p>
-    </div>
-
-    <div id="seekers-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
-    <div id="no-seekers" class="text-center text-slate-400 mt-10 hidden">No job seekers yet. Encourage your friends to create a profile.</div>
-  </div>
-</section>
-
-<!-- RESUME BUILDER -->
-<section id="resume-section" class="section bg-slate-900 pt-24 pb-16 text-white">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-10">
-      <h2 class="text-3xl md:text-4xl font-bold mb-3">Resume Builder</h2>
-      <p class="text-slate-300 text-lg">Build from scratch, or upload a .txt resume and we’ll auto-fill.</p>
-    </div>
-
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
-      <div class="card-3d p-6 text-slate-900">
-        <h3 class="text-xl font-semibold text-blue-900 mb-4">Your Info</h3>
-
-        <div class="mb-4">
-          <label class="block text-sm font-medium text-slate-700 mb-1">Upload text resume (.txt)</label>
-          <input id="resume-file" type="file" accept=".txt" class="block w-full text-sm text-slate-700" onchange="handleResumeUpload(event)" />
+          <h2 class="text-3xl md:text-4xl font-bold text-blue-900 mb-3">Featured Wichita Talent</h2>
+          <p class="text-slate-600 text-lg">Local job seekers ready to work right now.</p>
         </div>
 
-        <form id="resume-form" class="space-y-4">
+        <div id="featured-seekers" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+
+        <div class="text-center mt-8">
+          <button onclick="guardResumeBuilder()" class="btn-3d bg-blue-600 text-white rounded-full px-8 py-3 font-semibold">
+            Create Your Profile
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- JOBS SECTION -->
+  <section id="jobs-section" class="section bg-slate-900 pt-24 pb-16 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-10">
+        <h2 class="text-3xl md:text-4xl font-bold mb-3">Available Positions</h2>
+        <p class="text-slate-300 text-lg">Search by title, company, or neighborhood.</p>
+      </div>
+
+      <div class="mb-8 flex flex-wrap gap-3 justify-center">
+        <select id="job-type-filter" class="bg-white text-slate-900 px-4 py-2 rounded-full text-sm border border-slate-300 shadow-sm">
+          <option value="">All Job Types</option>
+          <option value="Full-time">Full-time</option>
+          <option value="Part-time">Part-time</option>
+          <option value="Contract">Contract</option>
+          <option value="Seasonal">Seasonal</option>
+        </select>
+        <input id="job-search" type="text" placeholder="Search jobs..." class="bg-white text-slate-900 px-4 py-2 rounded-full border border-slate-300 shadow-sm w-64 text-sm" />
+        <button onclick="filterJobs()" class="btn-3d bg-red-600 text-white px-6 py-2 rounded-full text-sm font-semibold">
+          Search
+        </button>
+      </div>
+
+      <div id="jobs-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+      <div id="no-jobs" class="text-center text-slate-400 mt-10 hidden">No jobs yet. Be the first to post.</div>
+    </div>
+  </section>
+
+  <!-- SEEKERS SECTION -->
+  <section id="seekers-section" class="section bg-slate-900 pt-24 pb-16 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-10">
+        <h2 class="text-3xl md:text-4xl font-bold mb-3">Job Seekers</h2>
+        <p class="text-slate-300 text-lg">Local people ready to work in Wichita.</p>
+      </div>
+
+      <div id="seekers-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+      <div id="no-seekers" class="text-center text-slate-400 mt-10 hidden">No job seekers yet. Encourage your friends to create a profile.</div>
+    </div>
+  </section>
+
+  <!-- RESUME BUILDER -->
+  <section id="resume-section" class="section bg-slate-900 pt-24 pb-16 text-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-10">
+        <h2 class="text-3xl md:text-4xl font-bold mb-3">Resume Builder</h2>
+        <p class="text-slate-300 text-lg">Build from scratch, or upload a .txt resume and we’ll auto-fill.</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+        <div class="card-3d p-6 text-slate-900">
+          <h3 class="text-xl font-semibold text-blue-900 mb-4">Your Info</h3>
+
+          <div class="mb-4">
+            <label class="block text-sm font-medium text-slate-700 mb-1">Upload text resume (.txt)</label>
+            <input id="resume-file" type="file" accept=".txt" class="block w-full text-sm text-slate-700" onchange="handleResumeUpload(event)" />
+          </div>
+
+          <form id="resume-form" class="space-y-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label class="text-sm font-medium text-slate-700 mb-1 block">Full Name *</label>
+                <input id="res-name" required class="w-full px-3 py-2 rounded-lg border border-slate-300 text-sm" />
+              </div>
+              <div>
+                <label class="text-sm font-medium text-slate-700 mb-1 block">Email *</label>
+                <input id="res-email" type="email" required class="w-full px-3 py-2 rounded-lg border border-slate-300 text-sm" />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label class="text-sm font-medium text-slate-700 mb-1 block">Phone</label>
+                <input id="res-phone" class="w-full px-3 py-2 rounded-lg border border-slate-300 text-sm" />
+              </div>
+              <div>
+                <label class="text-sm font-medium text-slate-700 mb-1 block">Location *</label>
+                <input id="res-location" required class="w-full px-3 py-2 rounded-lg border border-slate-300 text-sm" />
+              </div>
+            </div>
+
+            <div>
+              <label class="text-sm font-medium text-slate-700 mb-1 block">Summary *</label>
+              <textarea id="res-summary" required rows="3" class="w-full px-3 py-2 rounded-lg border border-slate-300 text-sm"></textarea>
+            </div>
+
+            <div>
+              <label class="text-sm font-medium text-slate-700 mb-1 block">Work Experience *</label>
+              <textarea id="res-experience" required rows="4" class="w-full px-3 py-2 rounded-lg border border-slate-300 text-sm"></textarea>
+            </div>
+
+            <div>
+              <label class="text-sm font-medium text-slate-700 mb-1 block">Education *</label>
+              <textarea id="res-education" required rows="3" class="w-full px-3 py-2 rounded-lg border border-slate-300 text-sm"></textarea>
+            </div>
+
+            <div>
+              <label class="text-sm font-medium text-slate-700 mb-1 block">Skills *</label>
+              <textarea id="res-skills" required rows="2" class="w-full px-3 py-2 rounded-lg border border-slate-300 text-sm"></textarea>
+            </div>
+
+            <button class="btn-3d bg-blue-600 text-white w-full rounded-full py-2 mt-2 text-sm font-semibold">
+              Save Profile (demo)
+            </button>
+          </form>
+        </div>
+
+        <div class="card-3d p-6 text-slate-900">
+          <h3 class="text-xl font-semibold text-blue-900 mb-4">Resume Preview</h3>
+          <div id="resume-preview" class="text-sm text-slate-800">
+            <div class="text-center text-slate-400 py-8">Fill the form to see your resume layout.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- POST JOB -->
+  <section id="postjob-section" class="section bg-slate-900 pt-24 pb-16 text-white">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-10">
+        <h2 class="text-3xl md:text-4xl font-bold mb-3">Post a Job</h2>
+        <p class="text-slate-300 text-lg">Connect with Wichita-area talent.</p>
+      </div>
+
+      <div class="card-3d p-6 text-slate-900">
+        <form id="job-form" class="space-y-4">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label class="text-sm font-medium text-slate-700 mb-1 block">Full Name *</label>
-              <input id="res-name" required class="w-full px-3 py-2 rounded-lg border border-slate-300 text-sm" />
+              <label class="block text-sm font-medium text-slate-700 mb-1">Job Title *</label>
+              <input id="job-title" required class="w-full px-3 py-2 rounded-lg border border-slate-300 text-sm" />
             </div>
             <div>
-              <label class="text-sm font-medium text-slate-700 mb-1 block">Email *</label>
-              <input id="res-email" type="email" required class="w-full px-3 py-2 rounded-lg border border-slate-300 text-sm" />
+              <label class="block text-sm font-medium text-slate-700 mb-1">Company Name *</label>
+              <input id="job-company" required class="w-full px-3 py-2 rounded-lg border border-slate-300 text-sm" />
             </div>
           </div>
 
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label class="text-sm font-medium text-slate-700 mb-1 block">Phone</label>
-              <input id="res-phone" class="w-full px-3 py-2 rounded-lg border border-slate-300 text-sm" />
+              <label class="block text-sm font-medium text-slate-700 mb-1">Location *</label>
+              <input id="job-location" required class="w-full px-3 py-2 rounded-lg border border-slate-300 text-sm" />
             </div>
             <div>
-              <label class="text-sm font-medium text-slate-700 mb-1 block">Location *</label>
-              <input id="res-location" required class="w-full px-3 py-2 rounded-lg border border-slate-300 text-sm" />
+              <label class="block text-sm font-medium text-slate-700 mb-1">Job Type *</label>
+              <select id="job-type" required class="w-full px-3 py-2 rounded-lg border border-slate-300 text-sm">
+                <option value="">Select type</option>
+                <option value="Full-time">Full-time</option>
+                <option value="Part-time">Part-time</option>
+                <option value="Contract">Contract</option>
+                <option value="Seasonal">Seasonal</option>
+              </select>
             </div>
           </div>
 
           <div>
-            <label class="text-sm font-medium text-slate-700 mb-1 block">Summary *</label>
-            <textarea id="res-summary" required rows="3" class="w-full px-3 py-2 rounded-lg border border-slate-300 text-sm"></textarea>
+            <label class="block text-sm font-medium text-slate-700 mb-1">Salary Range</label>
+            <input id="job-salary" placeholder="$50,000 - $70,000" class="w-full px-3 py-2 rounded-lg border border-slate-300 text-sm" />
           </div>
 
           <div>
-            <label class="text-sm font-medium text-slate-700 mb-1 block">Work Experience *</label>
-            <textarea id="res-experience" required rows="4" class="w-full px-3 py-2 rounded-lg border border-slate-300 text-sm"></textarea>
+            <label class="block text-sm font-medium text-slate-700 mb-1 block">Job Description *</label>
+            <textarea id="job-description" required rows="4" class="w-full px-3 py-2 rounded-lg border border-slate-300 text-sm"></textarea>
           </div>
 
           <div>
-            <label class="text-sm font-medium text-slate-700 mb-1 block">Education *</label>
-            <textarea id="res-education" required rows="3" class="w-full px-3 py-2 rounded-lg border border-slate-300 text-sm"></textarea>
+            <label class="block text-sm font-medium text-slate-700 mb-1">Requirements *</label>
+            <textarea id="job-requirements" required rows="3" class="w-full px-3 py-2 rounded-lg border border-slate-300 text-sm"></textarea>
           </div>
 
           <div>
-            <label class="text-sm font-medium text-slate-700 mb-1 block">Skills *</label>
-            <textarea id="res-skills" required rows="2" class="w-full px-3 py-2 rounded-lg border border-slate-300 text-sm"></textarea>
+            <label class="block text-sm font-medium text-slate-700 mb-1">Contact *</label>
+            <input id="job-contact" required class="w-full px-3 py-2 rounded-lg border border-slate-300 text-sm" />
           </div>
 
-          <button class="btn-3d bg-blue-600 text-white w-full rounded-full py-2 mt-2 text-sm font-semibold">
-            Save Profile (demo)
+          <button class="btn-3d bg-red-600 text-white w-full rounded-full py-2 mt-2 text-sm font-semibold">
+            Post Job (demo)
           </button>
         </form>
       </div>
+    </div>
+  </section>
 
-      <div class="card-3d p-6 text-slate-900">
-        <h3 class="text-xl font-semibold text-blue-900 mb-4">Resume Preview</h3>
-        <div id="resume-preview" class="text-sm text-slate-800">
-          <div class="text-center text-slate-400 py-8">Fill the form to see your resume layout.</div>
+  <!-- LOGIN MODAL -->
+  <div id="login-modal" class="modal-backdrop hidden">
+    <div class="card-3d max-w-md w-full p-6">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="text-xl font-semibold text-blue-900">Login</h3>
+        <button onclick="closeLoginModal()" class="text-slate-400 hover:text-slate-700 text-2xl leading-none">&times;</button>
+      </div>
+
+      <form id="login-form" class="space-y-4 text-sm text-slate-900">
+        <div>
+          <label class="block text-sm font-medium text-slate-700 mb-1">Email *</label>
+          <input id="login-email" type="email" required class="w-full px-3 py-2 rounded-lg border border-slate-300" />
         </div>
+        <div>
+          <label class="block text-sm font-medium text-slate-700 mb-1">Password *</label>
+          <input id="login-password" type="password" required class="w-full px-3 py-2 rounded-lg border border-slate-300" />
+        </div>
+        <button class="btn-3d bg-blue-600 text-white w-full rounded-full py-2 font-semibold">Login</button>
+      </form>
+
+      <div class="mt-4">
+        <p class="text-center text-xs text-slate-500">Don't have an account?
+          <button onclick="switchToSignup()" class="text-blue-600 hover:underline">Sign up</button>
+        </p>
       </div>
     </div>
   </div>
-</section>
 
-<!-- POST JOB -->
-<section id="postjob-section" class="section bg-slate-900 pt-24 pb-16 text-white">
-  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-10">
-      <h2 class="text-3xl md:text-4xl font-bold mb-3">Post a Job</h2>
-      <p class="text-slate-300 text-lg">Connect with Wichita-area talent.</p>
-    </div>
+  <!-- SIGNUP MODAL -->
+  <div id="signup-modal" class="modal-backdrop hidden">
+    <div class="card-3d max-w-md w-full p-6">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="text-xl font-semibold text-blue-900">Create Account</h3>
+        <button onclick="closeSignupModal()" class="text-slate-400 hover:text-slate-700 text-2xl">&times;</button>
+      </div>
 
-    <div class="card-3d p-6 text-slate-900">
-      <form id="job-form" class="space-y-4">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label class="block text-sm font-medium text-slate-700 mb-1">Job Title *</label>
-            <input id="job-title" required class="w-full px-3 py-2 rounded-lg border border-slate-300 text-sm" />
-          </div>
-          <div>
-            <label class="block text-sm font-medium text-slate-700 mb-1">Company Name *</label>
-            <input id="job-company" required class="w-full px-3 py-2 rounded-lg border border-slate-300 text-sm" />
-          </div>
+      <form id="signup-form" class="space-y-4 text-sm text-slate-900">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <button type="button" id="signup-type-seeker" onclick="setSignupType('seeker')" class="border border-slate-300 rounded-lg px-3 py-2 text-center">
+            <div class="text-2xl mb-1">👤</div>
+            <div class="font-medium text-slate-800">Job Seeker</div>
+          </button>
+
+          <button type="button" id="signup-type-poster" onclick="setSignupType('poster')" class="border border-slate-300 rounded-lg px-3 py-2 text-center">
+            <div class="text-2xl mb-1">🏢</div>
+            <div class="font-medium text-slate-800">Job Poster</div>
+          </button>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label class="block text-sm font-medium text-slate-700 mb-1">Location *</label>
-            <input id="job-location" required class="w-full px-3 py-2 rounded-lg border border-slate-300 text-sm" />
-          </div>
-          <div>
-            <label class="block text-sm font-medium text-slate-700 mb-1">Job Type *</label>
-            <select id="job-type" required class="w-full px-3 py-2 rounded-lg border border-slate-300 text-sm">
-              <option value="">Select type</option>
-              <option value="Full-time">Full-time</option>
-              <option value="Part-time">Part-time</option>
-              <option value="Contract">Contract</option>
-              <option value="Seasonal">Seasonal</option>
-            </select>
-          </div>
+        <input type="hidden" id="signup-type" />
+
+        <div>
+          <label class="block text-sm font-medium text-slate-700 mb-1">Full Name *</label>
+          <input id="signup-name" required class="w-full px-3 py-2 rounded-lg border border-slate-300" />
         </div>
 
         <div>
-          <label class="block text-sm font-medium text-slate-700 mb-1">Salary Range</label>
-          <input id="job-salary" placeholder="$50,000 - $70,000" class="w-full px-3 py-2 rounded-lg border border-slate-300 text-sm" />
+          <label class="block text-sm font-medium text-slate-700 mb-1">Email *</label>
+          <input id="signup-email" type="email" required class="w-full px-3 py-2 rounded-lg border border-slate-300" />
         </div>
 
         <div>
-          <label class="block text-sm font-medium text-slate-700 mb-1">Job Description *</label>
-          <textarea id="job-description" required rows="4" class="w-full px-3 py-2 rounded-lg border border-slate-300 text-sm"></textarea>
+          <label class="block text-sm font-medium text-slate-700 mb-1">Password *</label>
+          <input id="signup-password" type="password" required class="w-full px-3 py-2 rounded-lg border border-slate-300" />
         </div>
 
         <div>
-          <label class="block text-sm font-medium text-slate-700 mb-1">Requirements *</label>
-          <textarea id="job-requirements" required rows="3" class="w-full px-3 py-2 rounded-lg border border-slate-300 text-sm"></textarea>
+          <label class="block text-sm font-medium text-slate-700 mb-1">Location *</label>
+          <input id="signup-location" required class="w-full px-3 py-2 rounded-lg border border-slate-300" />
+        </div>
+
+        <div id="signup-company-wrapper" class="hidden">
+          <label class="block text-sm font-medium text-slate-700 mb-1">Company Name *</label>
+          <input id="signup-company" class="w-full px-3 py-2 rounded-lg border border-slate-300" />
         </div>
 
         <div>
-          <label class="block text-sm font-medium text-slate-700 mb-1">Contact *</label>
-          <input id="job-contact" required class="w-full px-3 py-2 rounded-lg border border-slate-300 text-sm" />
+          <label class="block text-sm font-medium text-slate-700 mb-1">About You / Company</label>
+          <textarea id="signup-bio" rows="3" class="w-full px-3 py-2 rounded-lg border border-slate-300"></textarea>
         </div>
 
-        <button class="btn-3d bg-red-600 tet-white w-full rounded-full py-2 mt-2 text-sm font-semibold">
-          Post Job (demo)
+        <button class="btn-3d bg-red-600 text-white w-full rounded-full py-2 font-semibold">
+          Create Account
         </button>
       </form>
+
+      <div class="mt-4 text-center text-xs text-slate-500">
+        Already have an account?
+        <button onclick="switchToLogin()" class="text-blue-600 hover:underline">Login</button>
+      </div>
     </div>
   </div>
-</section>
 
-<!-- LOGIN MODAL -->
-<div id="login-modal" class="modal-backdrop hidden">
-  <div class="card-3d max-w-md w-full p-6">
-    <div class="flex justify-between items-center mb-4">
-      <h3 class="text-xl font-semibold text-blue-900">Login</h3>
-      <button onclick="closeLoginModal()" class="text-slate-400 hover:text-slate-700 text-2xl leading-none">&times;</button>
-    </div>
+  <!-- TOAST -->
+  <div id="toast" class="toast"></div>
 
-    <form id="login-form" class="space-y-4 text-sm text-slate-900">
-      <div>
-        <label class="block text-sm font-medium text-slate-700 mb-1">Email *</label>
-        <input id="login-email" type="email" required class="w-full px-3 py-2 rounded-lg border border-slate-300" />
-      </div>
-      <div>
-        <label class="block text-sm font-medium text-slate-700 mb-1">Password *</label>
-        <input id="login-password" type="password" required class="w-full px-3 py-2 rounded-lg border border-slate-300" />
-      </div>
-      <button class="btn-3d bg-blue-600 text-white w-full rounded-full py-2 font-semibold">Login</button>
-    </form>
-
-    <div class="mt-4">
-      <p class="text-center text-xs text-slate-500">Don't have an account?
-        <button onclick="switchToSignup()" class="text-blue-600 hover:underline">Sign up</button>
-      </p>
-    </div>
-  </div>
-</div>
-
-<!-- SIGNUP MODAL -->
-<div id="signup-modal" class="modal-backdrop hidden">
-  <div class="card-3d max-w-md w-full p-6">
-    <div class="flex justify-between items-center mb-4">
-      <h3 class="text-xl font-semibold text-blue-900">Create Account</h3>
-      <button onclick="closeSignupModal()" class="text-slate-400 hover:text-slate-700 text-2xl">&times;</button>
-    </div>
-
-    <form id="signup-form" class="space-y-4 text-sm text-slate-900">
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-        <button type="button" id="signup-type-seeker" onclick="setSignupType('seeker')" class="border border-slate-300 rounded-lg px-3 py-2 text-center">
-          <div class="text-2xl mb-1">👤</div>
-          <div class="font-medium text-slate-800">Job Seeker</div>
-        </button>
-
-        <button type="button" id="signup-type-poster" onclick="setSignupType('poster')" class="border border-slate-300 rounded-lg px-3 py-2 text-center">
-          <div class="text-2xl mb-1">🏢</div>
-          <div class="font-medium text-slate-800">Job Poster</div>
-        </button>
-      </div>
-
-      <input type="hidden" id="signup-type" />
-
-      <div>
-        <label class="block text-sm font-medium text-slate-700 mb-1">Full Name *</label>
-        <input id="signup-name" required class="w-full px-3 py-2 rounded-lg border border-slate-300" />
-      </div>
-
-      <div>
-        <label class="block text-sm font-medium text-slate-700 mb-1">Email *</label>
-        <input id="signup-email" type="email" required class="w-full px-3 py-2 rounded-lg border border-slate-300" />
-      </div>
-
-      <div>
-        <label class="block text-sm font-medium text-slate-700 mb-1">Password *</label>
-        <input id="signup-password" type="password" required class="w-full px-3 py-2 rounded-lg border border-slate-300" />
-      </div>
-
-      <div>
-        <label class="block text-sm font-medium text-slate-700 mb-1">Location *</label>
-        <input id="signup-location" required class="w-full px-3 py-2 rounded-lg border border-slate-300" />
-      </div>
-
-      <div id="signup-company-wrapper" class="hidden">
-        <label class="block text-sm font-medium text-slate-700 mb-1">Company Name *</label>
-        <input id="signup-company" class="w-full px-3 py-2 rounded-lg border border-slate-300" />
-      </div>
-
-      <div>
-        <label class="block text-sm font-medium text-slate-700 mb-1">About You / Company</label>
-        <textarea id="signup-bio" rows="3" class="w-full px-3 py-2 rounded-lg border border-slate-300"></textarea>
-      </div>
-
-      <button class="btn-3d bg-red-600 text-white w-full rounded-full py-2 font-semibold">
-        Create Account
-      </button>
-    </form>
-
-    <div class="mt-4 text-center text-xs text-slate-500">
-      Already have an account?
-      <button onclick="switchToLogin()" class="text-blue-600 hover:underline">Login</button>
-    </div>
-  </div>
-</div>
-
-<!-- TOAST -->
-<div id="toast" class="toast"></div>
-
-<!-- BEGIN PART 3 BELOW -->
 <script>
-/* STORAGE */
+/* STORAGE & DATA MODEL */
 const STORAGE_KEY = "ruw_data_v2";
 let allData = [], jobs = [], seekers = [], users = [];
 let currentUser = null;
 
 function loadAllData() {
-  const raw = localStorage.getItem(STORAGE_KEY);
-  allData = raw ? JSON.parse(raw) : [];
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    allData = raw ? JSON.parse(raw) : [];
+  } catch (e) {
+    allData = [];
+  }
   jobs = allData.filter(d => d.type === "job");
-  seekers = allData.filter(d => d.type === "seeker");
-  users = allData.filter(d => d.type === "user");
+  seekers = allData.filter(d => d.type === "seeker" && !d.entity); // seeker profiles
+  users = allData.filter(d => d.entity === "user"); // account objects
 }
 
 function saveAllData() { localStorage.setItem(STORAGE_KEY, JSON.stringify(allData)); }
@@ -561,47 +565,60 @@ function updateItem(item) {
   }
 }
 
-/* FAKE JOBS */
-const sampleJobs = [
-  { id:'j1',type:'job',title:'CNC Machine Operator',company:'Prairie Sky Manufacturing',location:'North Wichita, KS',jobType:'Full-time',salary:'$22 - $29/hr',description:'Operate CNC equipment to fabricate metal parts.',requirements:'CNC experience preferred.',contact:'apply@prairieskymfg.com',createdAt:Date.now()-86400000 },
-  { id:'j2',type:'job',title:'Warehouse Associate',company:'ICT Distribution Center',location:'South Wichita, KS',jobType:'Full-time',salary:'$17 - $20/hr',description:'Assist with pallet loading, freight movement and inventory.',requirements:'Lift 50 lbs.',contact:'jobs@ictdc.com',createdAt:Date.now()-172800000 },
-  { id:'j3',type:'job',title:'Customer Support Rep',company:'Flint River Credit Union',location:'Downtown Wichita',jobType:'Full-time',salary:'$18 - $21/hr',description:'Help customers with account questions and billing.',requirements:'People-friendly.',contact:'hr@flintrivercu.com',createdAt:Date.now()-259200000 },
-  { id:'j4',type:'job',title:'HVAC Assistant',company:'AirTech Home Services',location:'East Wichita, KS',jobType:'Full-time',salary:'$16 - $19/hr',description:'Assist HVAC techs with installs and repairs.',requirements:'Valid DL.',contact:'team@airtechwichita.com',createdAt:Date.now()-360000000 },
-  { id:'j5',type:'job',title:'Metal Fabrication Helper',company:'Westside Fabrication Co.',location:'West Wichita',jobType:'Full-time',salary:'$18 - $23/hr',description:'Support fabrication crew in cutting and shaping materials.',requirements:'Mechanical aptitude.',contact:'shop@westsidefab.com',createdAt:Date.now()-480000000 },
+/* small safe esc for inserting text into templates */
+function esc(s) {
+  if (s === undefined || s === null) return "";
+  return String(s)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#39;");
+}
 
-  { id:'j6',type:'job',title:'Delivery Driver',company:'SkyLine Logistics',location:'Wichita Metro Area',jobType:'Contract',salary:'$150 - $240/day',description:'Deliver packages on daily routes.',requirements:'Reliable vehicle.',contact:'dispatch@skylineict.com',createdAt:Date.now()-550000000 },
-  { id:'j7',type:'job',title:'Retail Associate',company:'Riverfront Outfitters',location:'NewMarket Square',jobType:'Part-time',salary:'$14 - $16/hr',description:'Assist customers and stock items.',requirements:'Customer service experience.',contact:'retail@riverfrontoutfitters.com',createdAt:Date.now()-620000000 },
-  { id:'j8',type:'job',title:'Auto Detail Specialist',company:'Heartland Auto Spa',location:'NW Wichita',jobType:'Full-time',salary:'$15 - $18/hr',description:'Interior and exterior vehicle detailing.',requirements:'Attention to detail.',contact:'apply@heartlandautospakw.com',createdAt:Date.now()-690000000 },
-  { id:'j9',type:'job',title:'Classroom Aide',company:'Meadow Lane Learning Center',location:'Wichita, KS',jobType:'Full-time',salary:'$15 - $17/hr',description:'Assist teachers with daily class activities.',requirements:'Enjoy working with kids.',contact:'staff@meadowlaneedu.com',createdAt:Date.now()-760000000 },
-  { id:'j10',type:'job',title:'IT Support Tech',company:'ClearPath Solutions',location:'WSU Tech Area',jobType:'Full-time',salary:'$20 - $26/hr',description:'Provide tech support to clients.',requirements:'Basic IT knowledge.',contact:'support@clearpathict.com',createdAt:Date.now()-830000000 }
+/* FAKE JOBS - valid JS entries (no truncated strings) */
+const sampleJobs = [
+  {
+    id: 'j1', type: 'job', title: 'CNC Machine Operator', company: 'Prairie Sky Manufacturing',
+    location: 'North Wichita, KS', jobType: 'Full-time', salary: '$22 - $29/hr',
+    description: 'Operate CNC equipment and perform setup and quality checks.',
+    requirements: 'Prior CNC experience preferred; ability to read blueprints.',
+    contact: 'jobs@prairiesky.example'
+  },
+  {
+    id: 'j2', type: 'job', title: 'Warehouse Associate', company: 'ICT Distribution Center',
+    location: 'South Wichita, KS', jobType: 'Full-time', salary: '$17 - $20/hr',
+    description: 'Assist with pallet loading, inventory, and shipping.',
+    requirements: 'Able to lift 50lbs, reliable transportation.',
+    contact: 'hr@ictdist.example'
+  },
+  {
+    id: 'j3', type: 'job', title: 'Customer Support Rep', company: 'Flint River Credit Union',
+    location: 'Downtown Wichita', jobType: 'Full-time', salary: '$18 - $21/hr',
+    description: 'Help customers with account questions and transactions.',
+    requirements: 'Strong communication skills.',
+    contact: 'careers@flintriver.example'
+  }
 ];
 
-/* FAKE SEEKERS */
+/* FAKE SEEKERS (profiles) */
 const sampleSeekers = [
   {id:'s1',type:'seeker',name:'Jordan M.',role:'Sheet Metal Apprentice',location:'Wichita, KS'},
   {id:'s2',type:'seeker',name:'Lisa T.',role:'Customer Service Specialist',location:'Wichita, KS'},
   {id:'s3',type:'seeker',name:'Marcus R.',role:'CNC Helper',location:'Wichita, KS'},
   {id:'s4',type:'seeker',name:'Tasha B.',role:'Classroom Aide',location:'Wichita, KS'},
-  {id:'s5',type:'seeker',name:'Andre C.',role:'General Laborer',location:'Wichita, KS'},
-
-  {id:'s6',type:'seeker',name:'Megan H.',role:'Retail Associate',location:'Wichita, KS'},
-  {id:'s7',type:'seeker',name:'Henry S.',role:'Warehouse Worker',location:'Wichita, KS'},
-  {id:'s8',type:'seeker',name:'Kendra W.',role:'Admin Assistant',location:'Wichita, KS'},
-  {id:'s9',type:'seeker',name:'Bryan K.',role:'Delivery Driver',location:'Wichita, KS'},
-  {id:'s10',type:'seeker',name:'Elena R.',role:'Home Health Aide',location:'Wichita, KS'},
-
-  {id:'s11',type:'seeker',name:'Sam D.',role:'Auto Detailer',location:'Wichita, KS'},
-  {id:'s12',type:'seeker',name:'Naomi C.',role:'Hospitality Worker',location:'Wichita, KS'},
-  {id:'s13',type:'seeker',name:'Anthony L.',role:'Security Guard',location:'Wichita, KS'},
-  {id:'s14',type:'seeker',name:'Ethan H.',role:'Maintenance Tech',location:'Wichita, KS'},
-  {id:'s15',type:'seeker',name:'Rachel S.',role:'Receptionist',location:'Wichita, KS'}
+  {id:'s5',type:'seeker',name:'Andre C.',role:'General Laborer',location:'Wichita, KS'}
 ];
-
 
 /* SECTION SWITCHING */
 function showSection(id) {
   document.querySelectorAll(".section").forEach(s => s.classList.remove("active"));
-  document.getElementById(id + "-section").classList.add("active");
+  const el = document.getElementById(id + "-section");
+  if (!el) {
+    console.warn("showSection: target not found:", id + "-section");
+    return;
+  }
+  el.classList.add("active");
   window.scrollTo(0, 0);
 }
 
@@ -625,17 +642,17 @@ function guardResumeBuilder() {
 
 /* REFRESH UI */
 function refreshUI() {
-  document.getElementById("jobs-count").innerText = jobs.length;
-  document.getElementById("seekers-count").innerText = seekers.length;
+  document.getElementById("jobs-count").innerText = jobs.length || 0;
+  document.getElementById("seekers-count").innerText = seekers.length || 0;
 
   const fj = document.getElementById("featured-jobs");
   fj.innerHTML = "";
   jobs.slice(0, 3).forEach(j => {
     fj.innerHTML += `
       <div class="card-3d p-5">
-        <h3 class="text-lg font-bold text-blue-900 mb-1">${j.title}</h3>
-        <p class="text-sm text-slate-700 mb-2">${j.company}</p>
-        <p class="text-xs text-slate-500 mb-3">${j.location}</p>
+        <h3 class="text-lg font-bold text-blue-900 mb-1">${esc(j.title)}</h3>
+        <p class="text-sm text-slate-700 mb-2">${esc(j.company)}</p>
+        <p class="text-xs text-slate-500 mb-3">${esc(j.location)}</p>
         <button onclick="showSection('jobs')" class="btn-3d bg-blue-600 text-white px-3 py-1 text-sm rounded-full">View</button>
       </div>`;
   });
@@ -645,9 +662,9 @@ function refreshUI() {
   seekers.slice(0, 4).forEach(p => {
     fs.innerHTML += `
       <div class="card-3d p-5 text-center">
-        <h3 class="font-bold text-blue-900 mb-1">${p.name}</h3>
-        <p class="text-sm text-slate-700 mb-2">${p.role}</p>
-        <p class="text-xs text-slate-500">${p.location}</p>
+        <h3 class="font-bold text-blue-900 mb-1">${esc(p.name)}</h3>
+        <p class="text-sm text-slate-700 mb-2">${esc(p.role)}</p>
+        <p class="text-xs text-slate-500">${esc(p.location)}</p>
       </div>`;
   });
 
@@ -656,10 +673,10 @@ function refreshUI() {
   jobs.forEach(j => {
     jg.innerHTML += `
       <div class="card-3d p-5">
-        <h3 class="text-xl font-bold text-blue-900 mb-2">${j.title}</h3>
-        <p class="text-slate-700 mb-1">${j.company}</p>
-        <p class="text-slate-500 text-sm mb-3">${j.location}</p>
-        <button class="btn-3d bg-blue-600 text-white px-4 py-1 rounded-full text-sm" onclick="alert('Contact: ${j.contact}')">Apply</button>
+        <h3 class="text-xl font-bold text-blue-900 mb-2">${esc(j.title)}</h3>
+        <p class="text-slate-700 mb-1">${esc(j.company)}</p>
+        <p class="text-slate-500 text-sm mb-3">${esc(j.location)}</p>
+        <button class="btn-3d bg-blue-600 text-white px-4 py-1 rounded-full text-sm" onclick="alert('Contact: ${esc(j.contact)}')">Apply</button>
       </div>`;
   });
   document.getElementById("no-jobs").classList.toggle("hidden", jobs.length > 0);
@@ -669,9 +686,9 @@ function refreshUI() {
   seekers.forEach(p => {
     sg.innerHTML += `
       <div class="card-3d p-5">
-        <h3 class="font-bold text-blue-900 mb-1">${p.name}</h3>
-        <p class="text-sm text-slate-700 mb-2">${p.role}</p>
-        <p class="text-xs text-slate-500">${p.location}</p>
+        <h3 class="font-bold text-blue-900 mb-1">${esc(p.name)}</h3>
+        <p class="text-sm text-slate-700 mb-2">${esc(p.role)}</p>
+        <p class="text-xs text-slate-500">${esc(p.location)}</p>
       </div>`;
   });
   document.getElementById("no-seekers").classList.toggle("hidden", seekers.length > 0);
@@ -680,7 +697,7 @@ function refreshUI() {
     document.getElementById("auth-logged-out").classList.add("hidden");
     document.getElementById("auth-logged-in").classList.remove("hidden");
 
-    document.getElementById("user-name-nav").innerText = currentUser.name;
+    document.getElementById("user-name-nav").innerText = currentUser.name || "User";
     document.getElementById("user-type-nav").innerText = currentUser.type === "poster" ? "(Job Poster)" : "(Job Seeker)";
 
     document.getElementById("nav-postjob").classList.toggle("hidden", currentUser.type !== "poster");
@@ -708,10 +725,10 @@ function filterJobs() {
   filtered.forEach(j => {
     jg.innerHTML += `
       <div class="card-3d p-5">
-        <h3 class="text-xl font-bold text-blue-900 mb-2">${j.title}</h3>
-        <p class="text-slate-700 mb-1">${j.company}</p>
-        <p class="text-slate-500 text-sm mb-3">${j.location}</p>
-        <button class="btn-3d bg-blue-600 text-white px-4 py-1 rounded-full text-sm" onclick="alert('Contact: ${j.contact}')">Apply</button>
+        <h3 class="text-xl font-bold text-blue-900 mb-2">${esc(j.title)}</h3>
+        <p class="text-slate-700 mb-1">${esc(j.company)}</p>
+        <p class="text-slate-500 text-sm mb-3">${esc(j.location)}</p>
+        <button class="btn-3d bg-blue-600 text-white px-4 py-1 rounded-full text-sm" onclick="alert('Contact: ${esc(j.contact)}')">Apply</button>
       </div>`;
   });
 
@@ -730,25 +747,25 @@ function handleResumeUpload(e) {
   r.readAsText(f);
 }
 
-document.getElementById("resume-form").addEventListener("submit", e => {
+document.getElementById("resume-form").addEventListener("submit", function (e) {
   e.preventDefault();
   showToast("Profile saved!");
 });
 
-/* POST JOB */
-document.getElementById("job-form").addEventListener("submit", e => {
+/* POST JOB - fixed element references */
+document.getElementById("job-form").addEventListener("submit", function (e) {
   e.preventDefault();
   const j = {
     id: "job_" + Date.now(),
     type: "job",
-    title: job-title.value,
-    company: job-company.value,
-    location: job-location.value,
-    jobType: job-type.value,
-    salary: job-salary.value,
-    description: job-description.value,
-    requirements: job-requirements.value,
-    contact: job-contact.value,
+    title: document.getElementById("job-title").value.trim(),
+    company: document.getElementById("job-company").value.trim(),
+    location: document.getElementById("job-location").value.trim(),
+    jobType: document.getElementById("job-type").value,
+    salary: document.getElementById("job-salary").value.trim(),
+    description: document.getElementById("job-description").value.trim(),
+    requirements: document.getElementById("job-requirements").value.trim(),
+    contact: document.getElementById("job-contact").value.trim(),
     createdAt: Date.now()
   };
   addItem(j);
@@ -778,10 +795,10 @@ function switchToLogin() {
   openLoginModal();
 }
 
-document.getElementById("login-form").addEventListener("submit", e => {
+document.getElementById("login-form").addEventListener("submit", function (e) {
   e.preventDefault();
-  const em = login-email.value.toLowerCase();
-  const pw = login-password.value;
+  const em = document.getElementById("login-email").value.toLowerCase().trim();
+  const pw = document.getElementById("login-password").value;
   const u = users.find(x => x.email === em && x.password === pw);
   if (!u) return showToast("Invalid login", "error");
   currentUser = u;
@@ -798,21 +815,22 @@ function setSignupType(t) {
   document.getElementById("signup-company-wrapper").classList.toggle("hidden", t !== "poster");
 }
 
-document.getElementById("signup-form").addEventListener("submit", e => {
+document.getElementById("signup-form").addEventListener("submit", function (e) {
   e.preventDefault();
-  const t = signup-type.value || "seeker";
+  const t = document.getElementById("signup-type").value || "seeker";
   const u = {
     id: "u_" + Date.now(),
-    type: t,
-    name: signup-name.value,
-    email: signup-email.value.toLowerCase(),
-    password: signup-password.value,
-    location: signup-location.value,
-    bio: signup-bio.value
+    entity: "user",      // mark as account object
+    type: t,             // 'seeker' or 'poster'
+    name: document.getElementById("signup-name").value.trim(),
+    email: document.getElementById("signup-email").value.toLowerCase().trim(),
+    password: document.getElementById("signup-password").value,
+    location: document.getElementById("signup-location").value.trim(),
+    bio: document.getElementById("signup-bio").value.trim()
   };
-  if (t === "poster") u.company = signup-company.value;
-  users.push(u);
-  addItem(u);
+  if (t === "poster") u.company = document.getElementById("signup-company").value.trim();
+
+  addItem(u); // persists and refreshes
   currentUser = u;
   refreshUI();
   closeSignupModal();
@@ -830,7 +848,9 @@ function logout() {
 function showToast(msg, type = "success") {
   const t = document.getElementById("toast");
   t.innerText = msg;
-  t.className = "toast show" + (type === "error" ? " error" : "");
+  t.classList.remove("error");
+  t.classList.add("show");
+  if (type === "error") t.classList.add("error");
   setTimeout(() => t.classList.remove("show"), 2000);
 }
 
@@ -845,4 +865,3 @@ window.onload = function () {
 
 </body>
 </html>
-
