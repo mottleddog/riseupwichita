@@ -38,19 +38,16 @@
 
 <main class="container">
   <section id="hero" class="hero" aria-labelledby="hero-heading">
-    <div class="hero-media">
-      <video id="hero-video" muted playsinline loop preload="metadata" poster="/assets/hero-poster.jpg" aria-hidden="true">
-        <!-- Use encoded plus sign for S3 key safety -->
-        <source src="https://s3.us-east-2.amazonaws.com/wichita.video.2/wichita%2B2.mp4" type="video/mp4">
-        <!-- Very old browsers will show the poster fallback -->
+    <div class="hero-media" aria-hidden="true">
+      <video id="hero-video" autoplay muted playsinline loop preload="metadata" poster="/assets/hero-poster.jpg">
+        <!-- user-provided S3 link (kept as provided) -->
+        <source src="https://s3.us-east-2.amazonaws.com/wichita.video.2/wichita+2.mp4" type="video/mp4">
+        <!-- fallback image for very old browsers -->
         <img src="/assets/hero-poster.jpg" alt="RiseUp Wichita" />
       </video>
 
-      <!-- Play overlay (visible if autoplay is blocked) -->
-      <button id="hero-play" class="hero-play" aria-label="Play video" type="button">▶</button>
+      <div class="hero-dim" aria-hidden="true"></div>
     </div>
-
-    <div id="hero-poster" class="hero-poster" aria-hidden="true"></div>
 
     <div class="hero-content">
       <h1 id="hero-heading">Local jobs. Real work. Fair pay.</h1>
@@ -131,38 +128,5 @@
 </div>
 
 <script src="assets/app.js" defer></script>
-
-<script>
-/*
-  Play overlay handler: attempt autoplay; if blocked, show play button.
-  When the user clicks play, unmute and start the video.
-*/
-(function(){
-  const video = document.getElementById('hero-video');
-  const playBtn = document.getElementById('hero-play');
-
-  if (!video || !playBtn) return;
-
-  function showPlay() { playBtn.style.display = 'block'; playBtn.setAttribute('aria-hidden', 'false'); }
-  function hidePlay() { playBtn.style.display = 'none'; playBtn.setAttribute('aria-hidden', 'true'); }
-
-  // Try to autoplay once; if it fails, reveal the play overlay.
-  // Some browsers allow muted autoplay; we attempt to start muted.
-  const tryPlay = video.play();
-  if (tryPlay !== undefined) {
-    tryPlay.then(hidePlay).catch(showPlay);
-  } else {
-    // Older browsers: if no promise, assume it worked.
-    hidePlay();
-  }
-
-  playBtn.addEventListener('click', function(){
-    // Unmute when user explicitly starts playback.
-    video.muted = false;
-    video.play().then(hidePlay).catch(()=>{});
-  });
-})();
-</script>
-
 </body>
 </html>
