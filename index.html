@@ -4,13 +4,27 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>RiseUp Wichita — Jobs & Profiles</title>
+  <meta name="description" content="RiseUp Wichita connects job seekers and employers in Wichita. Build a profile, attach a resume, and find local work with fair pay.">
+  <meta name="keywords" content="Wichita jobs, local jobs, resume, gig work, job platform, Wichita KS">
+
+  <!-- Open Graph / Twitter Card -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="RiseUp Wichita — Local jobs, real work">
+  <meta property="og:description" content="Find local work in Wichita. Create a profile, attach your resume, and apply to jobs safely and quickly.">
+  <meta property="og:image" content="https://riseupwichita.com/assets/og-image.png">
+  <meta property="og:url" content="https://riseupwichita.com">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="RiseUp Wichita — Local jobs, real work">
+  <meta name="twitter:description" content="Find local work in Wichita. Create a profile, attach your resume, and apply to jobs safely and quickly.">
+  <meta name="twitter:image" content="https://riseupwichita.com/assets/og-image.png">
+
+  <link rel="canonical" href="https://riseupwichita.com/">
   <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
 <header class="site-header">
   <div class="container header-inner">
     <a class="brand" href="/">
-      <img src="/assets/brand.png" alt="Wichita flag" id="brand-img">
       <span class="brand-text">RiseUpWichita</span>
     </a>
     <nav class="main-nav">
@@ -23,10 +37,13 @@
 </header>
 <main class="container">
   <section id="hero" class="hero">
+    <!-- Using your S3 video URL; plus sign encoded as %2B to be safe -->
     <video id="hero-video" autoplay muted loop playsinline poster="/assets/hero-poster.jpg">
-      <source src="/assets/hero.mp4" type="video/mp4">
-      <!-- Fallback to a gentle background image if the video does not load -->
+      <source src="https://s3.us-east-2.amazonaws.com/wichita.video.2/wichita%2B2.mp4" type="video/mp4">
+      <!-- Fallback image inside for very old browsers -->
+      <img src="/assets/hero-poster.jpg" alt="RiseUp Wichita" />
     </video>
+    <div id="hero-poster" class="hero-poster" aria-hidden="true"></div>
     <div class="hero-content">
       <h1>Local jobs. Real work. Fair pay.</h1>
       <p class="sub">Professional, simple, and focused on getting people hired fast.</p>
@@ -62,17 +79,17 @@
 
 <!-- Job Modal -->
 <div id="job-modal" class="modal" aria-hidden="true">
-  <div class="modal-panel">
-    <button class="modal-close" id="close-modal">×</button>
+  <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="job-title">
+    <button class="modal-close" id="close-modal" aria-label="Close">×</button>
     <div id="modal-content"></div>
   </div>
 </div>
 
 <!-- Profile Modal -->
 <div id="profile-modal" class="modal" aria-hidden="true">
-  <div class="modal-panel">
-    <button class="modal-close" id="close-profile-modal">×</button>
-    <h3>Create Your Profile</h3>
+  <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="create-profile-title">
+    <button class="modal-close" id="close-profile-modal" aria-label="Close">×</button>
+    <h3 id="create-profile-title">Create Your Profile</h3>
     <form id="profile-form">
       <label>First name <input name="first" required></label>
       <label>Last name <input name="last" required></label>

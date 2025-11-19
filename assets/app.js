@@ -1,4 +1,4 @@
-// UI logic: specialties enforcement, avatar upload, improved resume builder, demo badges
+// UI logic: specialties enforcement, avatar upload, improved resume builder, demo badges + hero fallback
 (() => {
   const isLoggedIn = () => !!localStorage.getItem('ruf_profile');
   const getProfile = () => JSON.parse(localStorage.getItem('ruf_profile') || 'null');
@@ -34,7 +34,7 @@
     {id:'p15',first:'Zoe',last:'Hart',email:'zoe.hart@example.com',phone:'(316) 555-0115',primary:'Graphic Artist',specialties:['Poster Design','Branding'],bio:'Bold visual communicator.',resumeAttached:true,demo:true,avatar:null}
   ];
 
-  // Demo jobs (same as before)
+  // Demo jobs (unchanged)
   const demoJobs = [
     {id:'j1',title:'Event Poster Designer',company:'Blue Oak Co',location:'Wichita, KS',category:'Graphic Artist',salary:'$20/hr',posted:'2 days ago',description:'Design a striking poster and social assets for a local community concert.',contact:{name:'Jordan Hale',email:'jordan.hale@blueoak.example',phone:'(316) 444-1001'}},
     {id:'j2',title:'Residential Lawn Care',company:'GreenThumb',location:'Wichita, KS',category:'Landscaping',salary:'$18/hr',posted:'1 day ago',description:'Mow and edge several yards weekly for a set of homeowners.',contact:{name:'A. Rivera',email:'contact@greenthumb.example',phone:'(316) 444-1002'}},
@@ -101,42 +101,77 @@
     });
   }
 
+  // show a CTA banner in modal when not logged in
+  function showLoginCTA(container){
+    const existing = container.querySelector('.cta-banner'); if(existing) return;
+    const banner = el('div','cta-banner');
+    const p = el('p',null,'Create a free profile to see full contact details and apply.');
+    const actions = el('div','cta-actions');
+    const createBtn = el('button','btn primary','Create Profile'); createBtn.onclick = ()=>{ document.getElementById('profile-modal').setAttribute('aria-hidden','false'); };
+    const dismiss = el('button','btn ghost','Dismiss'); dismiss.onclick = ()=> banner.remove();
+    actions.appendChild(createBtn); actions.appendChild(dismiss);
+    banner.appendChild(p); banner.appendChild(actions);
+    container.prepend(banner);
+  }
+
   function openJob(job){
     const modal = document.getElementById('job-modal');
     const content = document.getElementById('modal-content');
     content.innerHTML='';
-    const t = el('h3',null, job.title);
+    const t = el('h3',null); t.id='job-title'; t.textContent = job.title;
     const meta = el('div','small', job.company+' • '+job.location+' • '+job.posted+' • '+job.salary);
     const desc = el('p',null, job.description);
     content.appendChild(t); content.appendChild(meta); content.appendChild(desc);
+
     // contact details – blurred unless profile exists
     const contactBox = el('div','card');
     const contactTitle = el('div','small','Contact');
     const profile = getProfile();
-    const contactInner = el('div', profile ? 'small' : 'contact-blur small', profile ? `${job.contact.name} • ${job.contact.email} • ${job.contact.phone}` : `${job.contact.name} • ${job.contact.email} • ${job.contact.phone}`);
+    const contactInner = el('div', profile ? 'small' : 'contact-blur small', `${job.contact.name} • ${job.contact.email} • ${job.contact.phone}`);
     contactBox.appendChild(contactTitle); contactBox.appendChild(contactInner);
     content.appendChild(contactBox);
 
     const actions = el('div','card-actions');
     const apply = el('button','btn primary', 'Apply');
-    apply.onclick = ()=>{
+    apply.onclick = () =>{
       if(!isLoggedIn()){ alert('You must create a profile to apply. Click "Create Profile" in the header.'); document.getElementById('cta-create').focus(); return; }
       const profile = getProfile();
       if(!profile.resumeAttached){ if(confirm('You need a resume attached to apply. Open resume builder?')) { openResumeBuilder(); } return; }
       alert('Application sent (demo). Contact: '+job.contact.email);
     };
-    const save = el('button','btn','Save'); save.onclick = ()=>alert('Saved to your account (demo)');
-    const share = el('button','btn','Share'); share.onclick=()=>navigator.share?navigator.share({title:job.title,text:job.description,url:window.location.href}):alert('Copy link to share');
+    const save = el('button','btn','Save'); save.onclick = () => alert('Saved to your account (demo)');
+    const share = el('button','btn','Share'); share.onclick = () => navigator.share?navigator.share({title:job.title,text:job.description,url:window.location.href}):alert('Copy link to share');
     actions.appendChild(apply); actions.appendChild(save); actions.appendChild(share);
     content.appendChild(actions);
 
+    // If not logged in, show CTA banner
+    if(!isLoggedIn()){
+      showLoginCTA(content);
+    }
+
+    // show modal
     modal.setAttribute('aria-hidden','false');
+
+    // set up overlay click to close and ESC handling (one-time listeners)
+    setTimeout(()=>{ // delay to avoid immediate close if click opened modal
+      const onOverlayClick = (e) => {
+        if(e.target === modal) { closeModal(); }
+      };
+      const onEsc = (e) => { if(e.key === 'Escape') closeModal(); };
+      const closeModal = () => {
+        modal.setAttribute('aria-hidden','true');
+        modal.removeEventListener('click', onOverlayClick);
+        document.removeEventListener('keydown', onEsc);
+      };
+      modal.addEventListener('click', onOverlayClick);
+      document.addEventListener('keydown', onEsc);
+      document.getElementById('close-modal').onclick = closeModal;
+    }, 80);
   }
 
   function openResumeBuilder(){
     if(!isLoggedIn()){ alert('Please create a profile first.'); return; }
-    const widget = document.getElementById('resume-widget');
-    widget.innerHTML = '';
+    const widget = document.getElementById('resume-widget'); widget.innerHTML = '';
     const profile = getProfile();
     const h = el('h4',null,'Resume Builder');
     const form = document.createElement('form');
@@ -147,8 +182,15 @@
       <label>Skills<input name="skills" value="${(profile.specialties||[]).join(', ')}"></label>
     `;
     const attachBtn = el('button','btn primary','Attach Resume');
-    attachBtn.type='button'; attachBtn.onclick = ()=>{ profile.resumeAttached = true; profile.summary = form.summary.value; profile.experience = form.exp.value; profile.education = form.edu.value; profile.skills = form.skills.value; localStorage.setItem('ruf_profile',JSON.stringify(profile)); alert('Resume attached (demo). You can now apply.'); renderProfiles(); };
-    const printBtn = el('button','btn','Print Resume'); printBtn.type='button'; printBtn.onclick = ()=>{ const w=window.open('about:blank'); w.document.write('<pre>'+['Name: '+profile.first+' '+(profile.last||''),'Email: '+profile.email,'', 'Summary:', form.summary.value,'','Experience:',form.exp.value,'','Education:',form.edu.value].join('\n')+'</pre>'); w.print(); };
+    attachBtn.type='button';
+    attachBtn.onclick = () => {
+      profile.resumeAttached = true; profile.summary = form.summary.value; profile.experience = form.exp.value; profile.education = form.edu.value; profile.skills = form.skills.value; localStorage.setItem('ruf_profile',JSON.stringify(profile)); alert('Resume attached (demo). You can now apply.'); renderProfiles();
+    };
+    const printBtn = el('button','btn','Print Resume'); printBtn.type='button'; printBtn.onclick = () => {
+      const w=window.open('about:blank');
+      w.document.write('<pre>'+['Name: '+profile.first+' '+(profile.last||''),'Email: '+profile.email,'', 'Summary:', form.summary.value,'','Experience:',form.exp.value,'','Education:',form.edu.value].join('\n')+'</pre>');
+      w.print();
+    };
     widget.appendChild(h); widget.appendChild(form); widget.appendChild(attachBtn); widget.appendChild(printBtn);
   }
 
@@ -170,7 +212,7 @@
     const f = e.target;
     const avatarFile = document.getElementById('avatar').files[0];
     const reader = avatarFile ? new FileReader() : null;
-    const save = (dataUrl)=>{
+    const save = (dataUrl) => {
       const data = {
         id: 'u'+Date.now(), first: f.first.value, last: f.last.value, email: f.email.value,
         primary: f.primary.value, specialties: [f.spec1.value,f.spec2.value].filter(Boolean).slice(0,2), bio:'', resumeAttached:false, avatar: dataUrl || null
@@ -181,25 +223,62 @@
       renderProfiles();
       openResumeBuilder();
     };
-    if(reader){ reader.onload = ()=> save(reader.result); reader.readAsDataURL(avatarFile); } else save(null);
+    if(reader){ reader.onload = () => save(reader.result); reader.readAsDataURL(avatarFile); } else save(null);
   }
 
   // Init
-  document.addEventListener('DOMContentLoaded', ()=>{
+  document.addEventListener('DOMContentLoaded', () => {
     renderJobs(); renderProfiles();
     // Wire header buttons
     document.getElementById('cta-create').addEventListener('click', showProfileModal);
-    document.getElementById('resume-link').addEventListener('click', (e)=>{ e.preventDefault(); if(!isLoggedIn()){ showProfileModal(); } else openResumeBuilder(); });
-    document.getElementById('close-modal').addEventListener('click', ()=>document.getElementById('job-modal').setAttribute('aria-hidden','true'));
-    document.getElementById('close-profile-modal').addEventListener('click', ()=>document.getElementById('profile-modal').setAttribute('aria-hidden','true'));
+    document.getElementById('resume-link').addEventListener('click', (e) => { e.preventDefault(); if(!isLoggedIn()){ showProfileModal(); } else openResumeBuilder(); });
+    document.getElementById('close-modal').addEventListener('click', () => document.getElementById('job-modal').setAttribute('aria-hidden','true'));
+    document.getElementById('close-profile-modal').addEventListener('click', () => document.getElementById('profile-modal').setAttribute('aria-hidden','true'));
     document.getElementById('profile-form').addEventListener('submit', saveProfileFromForm);
 
     // specialties population
-    document.getElementById('primary-select').addEventListener('change', (e)=> populateSpecialties(e.target.value));
+    document.getElementById('primary-select').addEventListener('change', (e) => populateSpecialties(e.target.value));
 
     // If no real user, pre-populate demo profile list; show option to import demo profile quickly
     const createBtn = document.getElementById('cta-create');
-    const quick = document.createElement('button'); quick.className='btn'; quick.textContent='Use Demo Profile'; quick.onclick = ()=>{ localStorage.setItem('ruf_profile', JSON.stringify(demoProfiles[0])); alert('Demo profile created'); renderProfiles(); };
+    const quick = document.createElement('button'); quick.className='btn'; quick.textContent='Use Demo Profile'; quick.onclick = () => { localStorage.setItem('ruf_profile', JSON.stringify(demoProfiles[0])); alert('Demo profile created'); renderProfiles(); };
     createBtn.insertAdjacentElement('afterend', quick);
+
+    // HERO VIDEO: force mute/volume=0 and fallback to poster if autoplay is blocked or error occurs
+    const video = document.getElementById('hero-video');
+    const poster = document.getElementById('hero-poster');
+    if (poster) {
+      poster.style.backgroundImage = "url('/assets/hero-poster.jpg')";
+    }
+    const showPoster = () => { if (poster) poster.style.display = 'block'; if (video) video.style.display = 'none'; };
+    const hidePoster = () => { if (poster) poster.style.display = 'none'; if (video) video.style.display = 'block'; };
+
+    if (video) {
+      try {
+        video.muted = true;
+        video.volume = 0;
+        video.setAttribute('muted', '');
+        video.setAttribute('playsinline', '');
+      } catch (e) {
+        // ignore if the browser blocks setting volume
+      }
+
+      video.addEventListener('canplay', () => {
+        hidePoster();
+        try {
+          const p = video.play();
+          if (p && p.catch) p.catch(() => { showPoster(); });
+        } catch (err) {
+          showPoster();
+        }
+      });
+
+      video.addEventListener('error', () => { showPoster(); });
+      // If load doesn't happen within 2.5s, fallback to poster (network issues)
+      setTimeout(() => { if (video.readyState < 3) { showPoster(); } }, 2500);
+    } else {
+      showPoster();
+    }
+
   });
 })();
