@@ -102,4 +102,18 @@ body{font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;marg
   font-size: 1.1rem;
   opacity: 0.9;
 }
+/* GLOBAL FIX TO STOP PAGE FROM BEING TOO WIDE */
+html, body {
+  overflow-x: hidden;
+}
+
+.hero {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.hero-media, #hero-video {
+  max-width: 100%;
+}
 
