@@ -5,84 +5,169 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>RiseUp Wichita — Local jobs, real work</title>
   <meta name="description" content="RiseUp Wichita connects job seekers and employers in Wichita. Build a profile, attach a resume, and find local work with fair pay.">
-  <link rel="stylesheet" href="assets/styles.css?v=1001">
+  <link rel="stylesheet" href="assets/styles.css?v=2001">
 </head>
 
 <body>
 
 <!-- ================= GLASS HEADER ================= -->
-<header class="site-header glass-header">
+<header class="site-header">
   <div class="container header-inner">
     <a class="brand" href="index.html">
+      <!-- round Wichita logo (make sure this file exists in /assets) -->
       <img src="assets/logo-wichita-round.png" alt="RiseUp Wichita" class="brand-mark">
       <span class="brand-text">RiseUpWichita</span>
     </a>
 
-    <nav class="main-nav" aria-label="main">
+    <nav class="main-nav" aria-label="Main navigation">
       <a href="index.html">Home</a>
       <a href="jobs.html">Jobs</a>
       <a href="profiles.html">Profiles</a>
-      <a id="resume-link" href="profiles.html#resume">Resume Builder</a>
+      <a href="#resume" id="resume-link">Resume Builder</a>
       <button id="cta-create" class="btn primary">Create Profile</button>
     </nav>
   </div>
 </header>
 
-<!-- ================= HERO VIDEO SECTION ================= -->
-<section id="hero" class="hero hero--video">
-  <div class="hero-media">
-    <video id="hero-video"
-           autoplay
-           muted
-           loop
-           playsinline
-           preload="auto"
-           poster="assets/hero-poster.jpg">
-      <source src="https://s3.us-east-2.amazonaws.com/wichita.video.2/wichita+2.mp4" type="video/mp4">
-    </video>
-    <div class="hero-dim"></div>
-  </div>
+<main>
 
-  <div class="hero-inner">
-    <h1>Wichita Works When We Work Together.</h1>
-    <p class="sub">Connecting real people with real opportunities — together we RISE UP.</p>
-
-    <div class="hero-ctas">
-      <a href="jobs.html" class="btn primary btn-lg">Find a Job</a>
-      <a href="profiles.html" class="btn glass btn-lg">Find a Profile</a>
+  <!-- ================= HERO VIDEO SECTION ================= -->
+  <section id="hero" class="hero hero--video" aria-labelledby="hero-heading">
+    <div class="hero-media" aria-hidden="true">
+      <video id="hero-video"
+             autoplay
+             muted
+             loop
+             playsinline
+             preload="auto"
+             poster="assets/hero-poster.jpg">
+        <source src="https://s3.us-east-2.amazonaws.com/wichita.video.2/wichita+2.mp4" type="video/mp4">
+      </video>
+      <div class="hero-dim"></div>
     </div>
 
-    <!-- ====== STATS CIRCLES ====== -->
-    <div class="hero-stats">
-      <a class="stat" href="jobs.html">
-        <div class="stat-ring">
-          <div class="stat-circle">
-            <span class="stat-number">15</span>
-          </div>
-        </div>
-        <span class="stat-label">Jobs</span>
-      </a>
+    <div class="hero-inner">
+      <h1 id="hero-heading">Wichita Works When We Work Together.</h1>
+      <p class="sub">Connecting real people with real opportunities — together we RISE UP.</p>
 
-      <a class="stat" href="profiles.html">
-        <div class="stat-ring">
-          <div class="stat-circle">
-            <span class="stat-number">15</span>
-          </div>
-        </div>
-        <span class="stat-label">Profiles</span>
-      </a>
+      <div class="hero-ctas">
+        <a href="jobs.html" class="btn primary btn-lg">Find a Job</a>
+        <a href="profiles.html" class="btn glass btn-lg">Find a Profile</a>
+      </div>
 
-      <a class="stat" href="index.html">
-        <div class="stat-ring">
-          <div class="stat-circle">
-            <span class="stat-number">100%</span>
+      <!-- ====== STATS CIRCLES ====== -->
+      <div class="hero-stats">
+        <a class="stat" href="jobs.html">
+          <div class="stat-ring">
+            <div class="stat-circle">
+              <span class="stat-number">15</span>
+            </div>
           </div>
-        </div>
-        <span class="stat-label">Local</span>
-      </a>
+          <span class="stat-label">Jobs</span>
+        </a>
+
+        <a class="stat" href="profiles.html">
+          <div class="stat-ring">
+            <div class="stat-circle">
+              <span class="stat-number">15</span>
+            </div>
+          </div>
+          <span class="stat-label">Profiles</span>
+        </a>
+
+        <a class="stat" href="index.html">
+          <div class="stat-ring">
+            <div class="stat-circle">
+              <span class="stat-number">100%</span>
+            </div>
+          </div>
+          <span class="stat-label">Local</span>
+        </a>
+      </div>
     </div>
+  </section>
+
+  <!-- ================= FEATURED JOBS ================= -->
+  <section id="jobs" class="cards-section container">
+    <div class="section-header">
+      <h2>Featured Jobs</h2>
+      <p class="muted">Scroll and click to view details. Contact info is blurred until you create a profile.</p>
+    </div>
+    <div id="jobs-grid" class="grid" aria-live="polite"></div>
+  </section>
+
+  <!-- ================= FEATURED PROFILES ================= -->
+  <section id="profiles" class="cards-section container">
+    <div class="section-header">
+      <h2>Featured Worker Profiles</h2>
+      <p class="muted">Real people in Wichita, each showcasing one primary skill and two specialties.</p>
+    </div>
+    <div id="profiles-grid" class="grid profiles-grid"></div>
+  </section>
+
+  <!-- ================= RESUME BUILDER ================= -->
+  <section id="resume" class="cards-section container">
+    <div class="section-header">
+      <h2>Resume Builder</h2>
+      <p class="muted">
+        Create a profile, then use this builder to attach a resume. Resumes are required to apply for jobs.
+      </p>
+    </div>
+    <div class="resume-area">
+      <div id="resume-widget"></div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ================= JOB MODAL ================= -->
+<div id="job-modal" class="modal" aria-hidden="true">
+  <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="job-title">
+    <button class="modal-close" id="close-modal" aria-label="Close">×</button>
+    <div id="modal-content"></div>
   </div>
-</section>
+</div>
+
+<!-- ================= PROFILE MODAL ================= -->
+<div id="profile-modal" class="modal" aria-hidden="true">
+  <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="create-profile-title">
+    <button class="modal-close" id="close-profile-modal" aria-label="Close">×</button>
+    <h3 id="create-profile-title">Create Your Profile</h3>
+    <form id="profile-form">
+      <label>First name <input name="first" required></label>
+      <label>Last name <input name="last" required></label>
+      <label>Email <input name="email" type="email" required></label>
+      <label>Primary skill
+        <select name="primary" id="primary-select" required>
+          <option value="">Choose a category</option>
+          <option>Construction</option>
+          <option>Graphic Artist</option>
+          <option>Food Service</option>
+          <option>Landscaping</option>
+          <option>Cleaning</option>
+          <option>Delivery</option>
+          <option>Caregiving</option>
+          <option>Handyman</option>
+        </select>
+      </label>
+      <label>Specialty #1
+        <select name="spec1" id="spec1"></select>
+      </label>
+      <label>Specialty #2
+        <select name="spec2" id="spec2"></select>
+      </label>
+      <label>Upload photo (optional)
+        <input name="avatar" id="avatar" type="file" accept="image/*">
+      </label>
+      <label>Upload resume (optional)
+        <input name="resume" type="file">
+      </label>
+      <div class="form-actions">
+        <button type="submit" class="btn primary">Create profile</button>
+      </div>
+    </form>
+  </div>
+</div>
 
 <script src="assets/app.js" defer></script>
 </body>
