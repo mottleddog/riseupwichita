@@ -1,152 +1,19 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>RiseUp Wichita — Local jobs, real work</title>
-  <meta name="description" content="RiseUp Wichita connects job seekers and employers in Wichita. Build a profile, attach a resume, and find local work with fair pay.">
-  <link rel="stylesheet" href="assets/styles.css?v=1001">
-</head>
-<body>
-<header class="site-header">
-  <div class="header-inner">
+<header class="site-header glass-header">
+  <div class="container header-inner">
     <a class="brand" href="index.html">
-      <img src="assets/wichita_circle_tight.png" alt="RiseUp Wichita logo" class="brand-logo">
+      <!-- Save that round logo as assets/logo-wichita-round.png -->
+      <img src="assets/logo-wichita-round.png"
+           alt="RiseUp Wichita logo"
+           class="brand-mark">
       <span class="brand-text">RiseUpWichita</span>
     </a>
     <nav class="main-nav" aria-label="Main navigation">
       <a href="index.html">Home</a>
       <a href="jobs.html">Jobs</a>
       <a href="profiles.html">Profiles</a>
-      <a href="#resume" id="resume-link">Resume Builder</a>
+      <!-- Send them to profiles page, where resume section will live -->
+      <a href="profiles.html#resume" id="resume-link">Resume Builder</a>
       <button id="cta-create" class="btn primary">Create Profile</button>
     </nav>
   </div>
 </header>
-
-<main>
-  <!-- FULL-VIEWPORT HERO VIDEO BACKGROUND -->
-  <section id="hero" class="hero" aria-labelledby="hero-heading">
-    <div class="hero-media" aria-hidden="true">
-      <video id="hero-video"
-             autoplay
-             muted
-             playsinline
-             loop
-             preload="auto"
-             poster="assets/hero-poster.jpg">
-        <source src="https://s3.us-east-2.amazonaws.com/wichita.video.2/wichita+2.mp4" type="video/mp4">
-        <img id="hero-poster" src="assets/hero-poster.jpg" alt="RiseUp Wichita">
-      </video>
-      <div class="hero-dim" aria-hidden="true"></div>
-    </div>
-
-    <div class="hero-content" role="region" aria-labelledby="hero-heading">
-      <h1 id="hero-heading">Wichita Works When We Work Together.</h1>
-      <p class="sub">Connecting real people with real opportunities — together we RISE UP.</p>
-
-      <div class="hero-ctas">
-        <a class="btn primary" href="jobs.html">Find a Job</a>
-        <a class="btn" href="profiles.html">Find a Profile</a>
-      </div>
-
-      <!-- STAT CIRCLES ON TOP OF VIDEO -->
-      <div class="hero-stats">
-        <a href="jobs.html" class="hero-stat">
-          <div class="hero-stat-circle"><span>15</span></div>
-          <div class="hero-stat-label">Jobs</div>
-        </a>
-        <a href="profiles.html" class="hero-stat">
-          <div class="hero-stat-circle"><span>15</span></div>
-          <div class="hero-stat-label">Profiles</div>
-        </a>
-        <a href="index.html" class="hero-stat">
-          <div class="hero-stat-circle"><span>100%</span></div>
-          <div class="hero-stat-label">Local</div>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- FEATURED JOBS -->
-  <section id="featured-jobs" class="cards-section container">
-    <div class="section-header">
-      <h2>Featured Jobs in Wichita</h2>
-      <p class="muted">Scroll the highlights here, then hit “Jobs” above to see every opening.</p>
-    </div>
-    <div id="jobs-grid" class="grid" aria-live="polite"></div>
-  </section>
-
-  <!-- FEATURED SEEKERS -->
-  <section id="featured-profiles" class="cards-section container">
-    <div class="section-header">
-      <h2>Featured Seekers</h2>
-      <p class="muted">A quick look at local workers ready to go. Click “Profiles” to browse them all.</p>
-    </div>
-    <div id="profiles-grid" class="grid profiles-grid"></div>
-  </section>
-
-  <!-- RESUME BUILDER -->
-  <section id="resume" class="cards-section container">
-    <div class="section-header">
-      <h2>Resume Builder</h2>
-      <p class="muted">Create a free profile, attach a resume, and use this builder to keep it updated.</p>
-    </div>
-    <div class="resume-area">
-      <div id="resume-widget"></div>
-    </div>
-  </section>
-</main>
-
-<!-- PROFILE MODAL -->
-<div id="profile-modal" class="modal" aria-hidden="true">
-  <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="create-profile-title">
-    <button class="modal-close" id="close-profile-modal" aria-label="Close">×</button>
-    <h3 id="create-profile-title">Create Your Profile</h3>
-    <form id="profile-form">
-      <label>First name <input name="first" required></label>
-      <label>Last name <input name="last" required></label>
-      <label>Email <input name="email" type="email" required></label>
-      <label>Primary skill
-        <select name="primary" id="primary-select" required>
-          <option value="">Choose a category</option>
-          <option>Construction</option>
-          <option>Graphic Artist</option>
-          <option>Food Service</option>
-          <option>Landscaping</option>
-          <option>Cleaning</option>
-          <option>Delivery</option>
-          <option>Caregiving</option>
-          <option>Handyman</option>
-        </select>
-      </label>
-      <label>Specialty #1
-        <select name="spec1" id="spec1"></select>
-      </label>
-      <label>Specialty #2
-        <select name="spec2" id="spec2"></select>
-      </label>
-      <label>Upload photo (optional)
-        <input name="avatar" id="avatar" type="file" accept="image/*">
-      </label>
-      <label>Upload resume (optional)
-        <input name="resume" type="file">
-      </label>
-      <div class="form-actions">
-        <button type="submit" class="btn primary">Create profile</button>
-      </div>
-    </form>
-  </div>
-</div>
-
-<!-- JOB MODAL -->
-<div id="job-modal" class="modal" aria-hidden="true">
-  <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="job-title">
-    <button class="modal-close" id="close-modal" aria-label="Close">×</button>
-    <div id="modal-content"></div>
-  </div>
-</div>
-
-<script src="assets/app.js" defer></script>
-</body>
-</html>
