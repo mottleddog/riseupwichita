@@ -1,19 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>RiseUp Wichita — Local jobs, real work</title>
+  <meta name="description" content="RiseUp Wichita connects job seekers and employers in Wichita. Build a profile, attach a resume, and find local work with fair pay.">
+  <link rel="stylesheet" href="assets/styles.css?v=1001">
+</head>
+
+<body>
+
+<!-- ================= GLASS HEADER ================= -->
 <header class="site-header glass-header">
   <div class="container header-inner">
     <a class="brand" href="index.html">
-      <!-- Save that round logo as assets/logo-wichita-round.png -->
-      <img src="assets/logo-wichita-round.png"
-           alt="RiseUp Wichita logo"
-           class="brand-mark">
+      <img src="assets/logo-wichita-round.png" alt="RiseUp Wichita" class="brand-mark">
       <span class="brand-text">RiseUpWichita</span>
     </a>
-    <nav class="main-nav" aria-label="Main navigation">
+
+    <nav class="main-nav" aria-label="main">
       <a href="index.html">Home</a>
       <a href="jobs.html">Jobs</a>
       <a href="profiles.html">Profiles</a>
-      <!-- Send them to profiles page, where resume section will live -->
-      <a href="profiles.html#resume" id="resume-link">Resume Builder</a>
+      <a id="resume-link" href="profiles.html#resume">Resume Builder</a>
       <button id="cta-create" class="btn primary">Create Profile</button>
     </nav>
   </div>
 </header>
+
+<!-- ================= HERO VIDEO SECTION ================= -->
+<section id="hero" class="hero hero--video">
+  <div class="hero-media">
+    <video id="hero-video"
+           autoplay
+           muted
+           loop
+           playsinline
+           preload="auto"
+           poster="assets/hero-poster.jpg">
+      <source src="https://s3.us-east-2.amazonaws.com/wichita.video.2/wichita+2.mp4" type="video/mp4">
+    </video>
+    <div class="hero-dim"></div>
+  </div>
+
+  <div class="hero-inner">
+    <h1>Wichita Works When We Work Together.</h1>
+    <p class="sub">Connecting real people with real opportunities — together we RISE UP.</p>
+
+    <div class="hero-ctas">
+      <a href="jobs.html" class="btn primary btn-lg">Find a Job</a>
+      <a href="profiles.html" class="btn glass btn-lg">Find a Profile</a>
+    </div>
+
+    <!-- ====== STATS CIRCLES ====== -->
+    <div class="hero-stats">
+      <a class="stat" href="jobs.html">
+        <div class="stat-ring">
+          <div class="stat-circle">
+            <span class="stat-number">15</span>
+          </div>
+        </div>
+        <span class="stat-label">Jobs</span>
+      </a>
+
+      <a class="stat" href="profiles.html">
+        <div class="stat-ring">
+          <div class="stat-circle">
+            <span class="stat-number">15</span>
+          </div>
+        </div>
+        <span class="stat-label">Profiles</span>
+      </a>
+
+      <a class="stat" href="index.html">
+        <div class="stat-ring">
+          <div class="stat-circle">
+            <span class="stat-number">100%</span>
+          </div>
+        </div>
+        <span class="stat-label">Local</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<script src="assets/app.js" defer></script>
+</body>
+</html>
