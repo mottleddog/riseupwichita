@@ -1,4 +1,4 @@
-// UI logic: specialties enforcement, avatar upload, improved resume builder, demo badges + hero fallback
+// UI logic: specialties enforcement, avatar upload, resume builder, demo badges + hero stats + hero video fallback
 (() => {
   const isLoggedIn = () => !!localStorage.getItem('ruf_profile');
   const getProfile = () => JSON.parse(localStorage.getItem('ruf_profile') || 'null');
@@ -54,52 +54,78 @@
   ];
 
   // Render helpers
-  function el(tag, cls, txt){ const e = document.createElement(tag); if(cls) e.className = cls; if(txt) e.textContent = txt; return e }
+  function el(tag, cls, txt){
+    const e = document.createElement(tag);
+    if(cls) e.className = cls;
+    if(txt) e.textContent = txt;
+    return e;
+  }
 
-  function renderJobs(){
+  function renderJobs(limit){
     const grid = document.getElementById('jobs-grid');
     if(!grid) return;
-    grid.innerHTML='';
-    demoJobs.forEach(job=>{
+    grid.innerHTML = '';
+    const list = typeof limit === 'number' ? demoJobs.slice(0, limit) : demoJobs;
+    list.forEach(job => {
       const c = el('article','card');
       const title = el('div','job-title', job.title);
       const comp = el('div','company', `${job.company} • ${job.location}`);
-      c.appendChild(title); c.appendChild(comp);
-      const desc = el('div','small', job.description.substring(0,120)+'...');
+      c.appendChild(title);
+      c.appendChild(comp);
+      const desc = el('div','small', job.description.substring(0, 120)+'…');
       c.appendChild(desc);
       const contact = el('div','contact-blur small', `${job.contact.name} • ${job.contact.email} • ${job.contact.phone}`);
       c.appendChild(contact);
       const foot = el('div','card-foot');
       const posted = el('div','small', job.posted + (job.salary?(' • '+job.salary):''));
       const actions = el('div','card-actions');
-      const open = el('button','btn','Open'); open.onclick = ()=>openJob(job);
-      const share = el('button','btn','Share'); share.onclick=()=>navigator.share?navigator.share({title:job.title,text:job.description,url:window.location.href}):alert('Copy the URL to share');
-      actions.appendChild(open); actions.appendChild(share);
-      foot.appendChild(posted); foot.appendChild(actions);
+      const open = el('button','btn','Open'); 
+      open.onclick = ()=>openJob(job);
+      const share = el('button','btn','Share');
+      share.onclick = ()=>navigator.share ? navigator.share({title:job.title,text:job.description,url:window.location.href}) : alert('Copy the URL to share');
+      actions.appendChild(open);
+      actions.appendChild(share);
+      foot.appendChild(posted);
+      foot.appendChild(actions);
       c.appendChild(foot);
       grid.appendChild(c);
     });
   }
 
-  function renderProfiles(){
+  function renderProfiles(limit){
     const grid = document.getElementById('profiles-grid');
     if(!grid) return;
-    grid.innerHTML='';
+    grid.innerHTML = '';
     const profiles = demoProfiles.slice();
-    const user = getProfile(); if(user) profiles.unshift(user);
-    profiles.forEach(p=>{
+    const user = getProfile();
+    if(user) profiles.unshift(user);
+    const list = typeof limit === 'number' ? profiles.slice(0, limit) : profiles;
+    list.forEach(p => {
       const cWrap = el('div','profile-wrapper');
       const c = el('article','card profile-card');
       const av = el('div','profile-avatar');
-      if(p.avatar){ const img = document.createElement('img'); img.src = p.avatar; img.style.width='100%'; img.style.height='100%'; img.style.objectFit='cover'; img.style.borderRadius='8px'; av.appendChild(img); }
-      else { av.textContent = (p.first? (p.first[0]+(p.last?p.last[0]:'')): 'RU').toUpperCase(); }
+      if(p.avatar){
+        const img = document.createElement('img');
+        img.src = p.avatar;
+        img.alt = (p.first || 'Profile') + ' avatar';
+        av.appendChild(img);
+      } else {
+        av.textContent = (p.first ? (p.first[0] + (p.last ? p.last[0] : '')) : 'RU').toUpperCase();
+      }
       const name = el('div','profile-name', p.first + ' ' + (p.last||''));
       const primary = el('div','small','Primary: '+p.primary);
       const skills = el('div','profile-skills');
-      const pillMain = el('div','skill-pill',p.primary); skills.appendChild(pillMain);
-      (p.specialties||[]).slice(0,2).forEach(s=>skills.appendChild(el('div','skill-pill',s)));
-      c.appendChild(av); c.appendChild(name); c.appendChild(primary); c.appendChild(skills);
-      if(p.demo) { const badge = el('div','demo-badge','Demo'); cWrap.appendChild(badge); }
+      const pillMain = el('div','skill-pill',p.primary); 
+      skills.appendChild(pillMain);
+      (p.specialties||[]).slice(0,2).forEach(s => skills.appendChild(el('div','skill-pill',s)));
+      c.appendChild(av);
+      c.appendChild(name);
+      c.appendChild(primary);
+      c.appendChild(skills);
+      if(p.demo){
+        const badge = el('div','demo-badge','Demo');
+        cWrap.appendChild(badge);
+      }
       cWrap.appendChild(c);
       grid.appendChild(cWrap);
     });
@@ -108,14 +134,22 @@
   // show a CTA banner in modal when not logged in
   function showLoginCTA(container){
     if(!container) return;
-    const existing = container.querySelector('.cta-banner'); if(existing) return;
+    const existing = container.querySelector('.cta-banner');
+    if(existing) return;
     const banner = el('div','cta-banner');
     const p = el('p',null,'Create a free profile to see full contact details and apply.');
-    const actions = el('div','cta-actions');
-    const createBtn = el('button','btn primary','Create Profile'); createBtn.onclick = ()=>{ const pm = document.getElementById('profile-modal'); if(pm) pm.setAttribute('aria-hidden','false'); };
-    const dismiss = el('button','btn ghost','Dismiss'); dismiss.onclick = ()=> banner.remove();
-    actions.appendChild(createBtn); actions.appendChild(dismiss);
-    banner.appendChild(p); banner.appendChild(actions);
+    const actions = el('div','card-actions');
+    const createBtn = el('button','btn primary','Create Profile');
+    createBtn.onclick = () => {
+      const pm = document.getElementById('profile-modal');
+      if(pm) pm.setAttribute('aria-hidden','false');
+    };
+    const dismiss = el('button','btn','Dismiss');
+    dismiss.onclick = () => banner.remove();
+    actions.appendChild(createBtn);
+    actions.appendChild(dismiss);
+    banner.appendChild(p);
+    banner.appendChild(actions);
     container.prepend(banner);
   }
 
@@ -123,31 +157,49 @@
     const modal = document.getElementById('job-modal');
     const content = document.getElementById('modal-content');
     if(!modal || !content) return;
-    content.innerHTML='';
-    const t = el('h3',null); t.id='job-title'; t.textContent = job.title;
-    const meta = el('div','small', job.company+' • '+job.location+' • '+job.posted+' • '+job.salary);
+    content.innerHTML = '';
+    const t = el('h3',null);
+    t.id = 'job-title';
+    t.textContent = job.title;
+    const meta = el('div','small', `${job.company} • ${job.location} • ${job.posted}${job.salary ? ' • '+job.salary : ''}`);
     const desc = el('p',null, job.description);
-    content.appendChild(t); content.appendChild(meta); content.appendChild(desc);
+    content.appendChild(t);
+    content.appendChild(meta);
+    content.appendChild(desc);
 
-    // contact details – blurred unless profile exists
     const contactBox = el('div','card');
     const contactTitle = el('div','small','Contact');
     const profile = getProfile();
     const contactInner = el('div', profile ? 'small' : 'contact-blur small', `${job.contact.name} • ${job.contact.email} • ${job.contact.phone}`);
-    contactBox.appendChild(contactTitle); contactBox.appendChild(contactInner);
+    contactBox.appendChild(contactTitle);
+    contactBox.appendChild(contactInner);
     content.appendChild(contactBox);
 
     const actions = el('div','card-actions');
-    const apply = el('button','btn primary', 'Apply');
-    apply.onclick = () =>{
-      if(!isLoggedIn()){ alert('You must create a profile to apply. Click "Create Profile" in the header.'); const cta = document.getElementById('cta-create'); if(cta) cta.focus(); return; }
+    const apply = el('button','btn primary','Apply');
+    apply.onclick = () => {
+      if(!isLoggedIn()){
+        alert('You must create a profile to apply. Click "Create Profile" in the header.');
+        const cta = document.getElementById('cta-create');
+        if(cta) cta.focus();
+        return;
+      }
       const profile = getProfile();
-      if(!profile || !profile.resumeAttached){ if(confirm('You need a resume attached to apply. Open resume builder?')) { openResumeBuilder(); } return; }
+      if(!profile || !profile.resumeAttached){
+        if(confirm('You need a resume attached to apply. Open resume builder?')){
+          openResumeBuilder();
+        }
+        return;
+      }
       alert('Application sent (demo). Contact: '+job.contact.email);
     };
-    const save = el('button','btn','Save'); save.onclick = () => alert('Saved to your account (demo)');
-    const share = el('button','btn','Share'); share.onclick = () => navigator.share?navigator.share({title:job.title,text:job.description,url:window.location.href}):alert('Copy link to share');
-    actions.appendChild(apply); actions.appendChild(save); actions.appendChild(share);
+    const save = el('button','btn','Save');
+    save.onclick = () => alert('Saved to your account (demo)');
+    const share = el('button','btn','Share');
+    share.onclick = () => navigator.share ? navigator.share({title:job.title,text:job.description,url:window.location.href}) : alert('Copy link to share');
+    actions.appendChild(apply);
+    actions.appendChild(save);
+    actions.appendChild(share);
     content.appendChild(actions);
 
     if(!isLoggedIn()){
@@ -156,25 +208,34 @@
 
     modal.setAttribute('aria-hidden','false');
 
-    setTimeout(()=>{ 
+    setTimeout(() => {
       const onOverlayClick = (e) => {
-        if(e.target === modal) { closeModal(); }
+        if(e.target === modal){
+          closeModal();
+        }
       };
-      const onEsc = (e) => { if(e.key === 'Escape') closeModal(); };
+      const onEsc = (e) => {
+        if(e.key === 'Escape') closeModal();
+      };
       const closeModal = () => {
         modal.setAttribute('aria-hidden','true');
         modal.removeEventListener('click', onOverlayClick);
         document.removeEventListener('keydown', onEsc);
       };
       modal.addEventListener('click', onOverlayClick);
-      document.addEventListener('keydown', onEsc);
       const closeBtn = document.getElementById('close-modal');
       if(closeBtn) closeBtn.onclick = closeModal;
+      document.addEventListener('keydown', onEsc);
     }, 80);
   }
 
   function openResumeBuilder(){
-    if(!isLoggedIn()){ alert('Please create a profile first.'); return; }
+    if(!isLoggedIn()){
+      alert('Please create a profile first.');
+      const pm = document.getElementById('profile-modal');
+      if(pm) pm.setAttribute('aria-hidden','false');
+      return;
+    }
     const widget = document.getElementById('resume-widget');
     if(!widget) return;
     widget.innerHTML = '';
@@ -182,12 +243,13 @@
     const h = el('h4',null,'Resume Builder');
     const form = document.createElement('form');
     form.innerHTML = `
-      <label>Summary<textarea name="summary" style="width:100%;height:80px">${profile?.bio||''}</textarea></label>
-      <label>Experience<textarea name="exp" style="width:100%;height:120px">${(profile?.experience||'')}</textarea></label>
-      <label>Education<textarea name="edu" style="width:100%;height:80px">${(profile?.education||'')}</textarea></label>
-      <label>Skills<input name="skills" value="${(profile?.specialties||[]).join(', ')}"></label>
+      <label>Summary<textarea name="summary" style="width:100%;height:80px">${profile?.summary || profile?.bio || ''}</textarea></label>
+      <label>Experience<textarea name="exp" style="width:100%;height:120px">${profile?.experience || ''}</textarea></label>
+      <label>Education<textarea name="edu" style="width:100%;height:80px">${profile?.education || ''}</textarea></label>
+      <label>Skills<input name="skills" value="${(profile?.skills || (profile?.specialties || [])?.join(', ')) || ''}"></label>
     `;
-    const attachBtn = el('button','btn primary','Attach Resume'); attachBtn.type='button';
+    const attachBtn = el('button','btn primary','Attach Resume');
+    attachBtn.type = 'button';
     attachBtn.onclick = () => {
       const prof = getProfile() || {};
       prof.resumeAttached = true;
@@ -198,27 +260,60 @@
       localStorage.setItem('ruf_profile', JSON.stringify(prof));
       alert('Resume attached (demo).');
     };
-    const printBtn = el('button','btn','Print Resume'); printBtn.type='button'; printBtn.onclick = () => {
-      const w=window.open('about:blank');
-      const profile = getProfile() || {};
-      w.document.write('<pre>'+['Name: '+(profile.first||'')+' '+(profile.last||''),'Email: '+(profile.email||''),'', 'Summary:', form.summary.value,'','Experience:',form.exp.value,'','Education:',form.edu.value].join("\n")+'</pre>');
+    const printBtn = el('button','btn','Print Resume');
+    printBtn.type = 'button';
+    printBtn.onclick = () => {
+      const w = window.open('about:blank');
+      const p = getProfile() || {};
+      w.document.write('<pre>'+[
+        'Name: '+(p.first||'')+' '+(p.last||''),
+        'Email: '+(p.email||''),
+        '',
+        'Summary:',
+        form.summary.value,
+        '',
+        'Experience:',
+        form.exp.value,
+        '',
+        'Education:',
+        form.edu.value,
+        '',
+        'Skills:',
+        form.skills.value
+      ].join('\n')+'</pre>');
       w.print();
     };
-    widget.appendChild(h); widget.appendChild(form); widget.appendChild(attachBtn); widget.appendChild(printBtn);
+    widget.appendChild(h);
+    widget.appendChild(form);
+    widget.appendChild(attachBtn);
+    widget.appendChild(printBtn);
   }
 
   // Profile create flow
   function showProfileModal(){
-    const m = document.getElementById('profile-modal'); if(m) m.setAttribute('aria-hidden','false');
+    const m = document.getElementById('profile-modal');
+    if(m) m.setAttribute('aria-hidden','false');
   }
 
   function populateSpecialties(primary){
-    const s1 = document.getElementById('spec1'); const s2 = document.getElementById('spec2');
+    const s1 = document.getElementById('spec1');
+    const s2 = document.getElementById('spec2');
     if(!s1 || !s2) return;
-    s1.innerHTML=''; s2.innerHTML='';
+    s1.innerHTML = '';
+    s2.innerHTML = '';
     const opts = specialtyMap[primary] || [];
-    const blank = document.createElement('option'); blank.value=''; blank.textContent='(choose)'; s1.appendChild(blank); s2.appendChild(blank.cloneNode(true));
-    opts.forEach(o=>{ const a = document.createElement('option'); a.value=o; a.textContent=o; s1.appendChild(a); s2.appendChild(a.cloneNode(true)); });
+    const blank = document.createElement('option');
+    blank.value = '';
+    blank.textContent = '(choose)';
+    s1.appendChild(blank);
+    s2.appendChild(blank.cloneNode(true));
+    opts.forEach(o => {
+      const a = document.createElement('option');
+      a.value = o;
+      a.textContent = o;
+      s1.appendChild(a);
+      s2.appendChild(a.cloneNode(true));
+    });
   }
 
   function saveProfileFromForm(e){
@@ -226,84 +321,135 @@
     const f = e.target;
     if(!f) return;
     const avatarInput = document.getElementById('avatar');
-    const avatarFile = (avatarInput && avatarInput.files && avatarInput.files[0]) || null;
+    const avatarFile = avatarInput && avatarInput.files && avatarInput.files[0] ? avatarInput.files[0] : null;
     const reader = avatarFile ? new FileReader() : null;
     const save = (dataUrl) => {
       const data = {
-        id: 'u'+Date.now(), first: f.first.value, last: f.last.value, email: f.email.value,
-        primary: f.primary.value, specialties: [f.spec1.value,f.spec2.value].filter(Boolean).slice(0,2), bio:'', resumeAttached:false, avatar: dataUrl || null
+        id: 'u'+Date.now(),
+        first: f.first.value,
+        last: f.last.value,
+        email: f.email.value,
+        primary: f.primary.value,
+        specialties: [f.spec1.value, f.spec2.value].filter(Boolean).slice(0,2),
+        bio:'',
+        resumeAttached:false,
+        avatar: dataUrl || null
       };
       localStorage.setItem('ruf_profile', JSON.stringify(data));
-      const pm = document.getElementById('profile-modal'); if(pm) pm.setAttribute('aria-hidden','true');
+      const pm = document.getElementById('profile-modal');
+      if(pm) pm.setAttribute('aria-hidden','true');
       alert('Profile created. You can now view contact details and use the resume builder.');
       if(document.getElementById('profiles-grid')) renderProfiles();
       if(document.getElementById('resume-widget')) openResumeBuilder();
     };
-    if(reader){ reader.onload = () => save(reader.result); reader.readAsDataURL(avatarFile); } else save(null);
+    if(reader){
+      reader.onload = () => save(reader.result);
+      reader.readAsDataURL(avatarFile);
+    } else {
+      save(null);
+    }
   }
 
-  // Init
   document.addEventListener('DOMContentLoaded', () => {
-    if (document.getElementById('jobs-grid')) {
-      try { renderJobs(); } catch (e) { console.error('renderJobs error', e); }
+    // Jobs / profiles rendering
+    const jobsGrid = document.getElementById('jobs-grid');
+    const profilesGrid = document.getElementById('profiles-grid');
+
+    if(jobsGrid){
+      // On home page we only want a preview (6); on jobs page we show all.
+      const isJobsPage = window.location.pathname.endsWith('jobs.html');
+      try { renderJobs(isJobsPage ? undefined : 6); } catch (e) { console.error('renderJobs error', e); }
     }
-    if (document.getElementById('profiles-grid')) {
-      try { renderProfiles(); } catch (e) { console.error('renderProfiles error', e); }
+
+    if(profilesGrid){
+      const isProfilesPage = window.location.pathname.endsWith('profiles.html');
+      try { renderProfiles(isProfilesPage ? undefined : 6); } catch (e) { console.error('renderProfiles error', e); }
     }
 
     // Wire header buttons
     const ctaCreate = document.getElementById('cta-create');
-    if (ctaCreate) ctaCreate.addEventListener('click', showProfileModal);
+    if(ctaCreate) ctaCreate.addEventListener('click', showProfileModal);
 
     const resumeLink = document.getElementById('resume-link');
-    if (resumeLink) {
+    if(resumeLink){
       resumeLink.addEventListener('click', (e) => {
-        e.preventDefault();
-        if(!isLoggedIn()){ const pm = document.getElementById('profile-modal'); if(pm) pm.setAttribute('aria-hidden','false'); }
-        else { if (document.getElementById('resume-widget')) openResumeBuilder(); }
+        // on profiles.html this will just scroll; elsewhere, let link work normally
+        if(window.location.pathname.endsWith('profiles.html')){
+          e.preventDefault();
+          const target = document.getElementById('resume');
+          if(target){
+            target.scrollIntoView({behavior:'smooth'});
+            if(isLoggedIn() && document.getElementById('resume-widget')){
+              openResumeBuilder();
+            }
+          }
+        }
       });
     }
 
     const closeModalBtn = document.getElementById('close-modal');
-    if (closeModalBtn) closeModalBtn.addEventListener('click', () => { const m = document.getElementById('job-modal'); if(m) m.setAttribute('aria-hidden','true'); });
+    if(closeModalBtn){
+      closeModalBtn.addEventListener('click', () => {
+        const m = document.getElementById('job-modal');
+        if(m) m.setAttribute('aria-hidden','true');
+      });
+    }
 
     const closeProfileBtn = document.getElementById('close-profile-modal');
-    if (closeProfileBtn) closeProfileBtn.addEventListener('click', () => { const m = document.getElementById('profile-modal'); if(m) m.setAttribute('aria-hidden','true'); });
+    if(closeProfileBtn){
+      closeProfileBtn.addEventListener('click', () => {
+        const m = document.getElementById('profile-modal');
+        if(m) m.setAttribute('aria-hidden','true');
+      });
+    }
 
     const profileForm = document.getElementById('profile-form');
-    if (profileForm) profileForm.addEventListener('submit', saveProfileFromForm);
+    if(profileForm) profileForm.addEventListener('submit', saveProfileFromForm);
 
     const primarySelect = document.getElementById('primary-select');
-    if (primarySelect) primarySelect.addEventListener('change', (e) => populateSpecialties(e.target.value));
+    if(primarySelect) primarySelect.addEventListener('change', (e) => populateSpecialties(e.target.value));
 
-    // Demo quick button insertion (if header create button exists)
-    if (ctaCreate) {
-      const quick = document.createElement('button'); quick.className='btn'; quick.textContent='Use Demo Profile';
-      quick.onclick = () => { localStorage.setItem('ruf_profile', JSON.stringify(demoProfiles[0] || {})); if (document.getElementById('profiles-grid')) renderProfiles(); };
+    // Demo quick profile button (header)
+    if(ctaCreate){
+      const quick = document.createElement('button');
+      quick.className = 'btn';
+      quick.textContent = 'Use Demo Profile';
+      quick.onclick = () => {
+        localStorage.setItem('ruf_profile', JSON.stringify(demoProfiles[0] || {}));
+        if(document.getElementById('profiles-grid')) renderProfiles();
+      };
       ctaCreate.insertAdjacentElement('afterend', quick);
     }
 
     // HERO VIDEO: only run if present
     const video = document.getElementById('hero-video');
-    const poster = document.getElementById('hero-poster');
-    const showPoster = () => { if (poster) poster.style.display = 'block'; if (video) video.style.display = 'none'; };
-    const hidePoster = () => { if (poster) poster.style.display = 'none'; if (video) video.style.display = 'block'; };
-
-    if (video) {
-      try {
+    if(video){
+      try{
         video.muted = true;
         video.volume = 0;
-        video.setAttribute('muted', '');
-        video.setAttribute('playsinline', '');
-      } catch (e) {}
+        video.setAttribute('muted','');
+        video.setAttribute('playsinline','');
+      }catch(e){}
       video.addEventListener('canplay', () => {
-        hidePoster();
-        try { const p = video.play(); if (p && p.catch) p.catch(() => { showPoster(); }); } catch (err) { showPoster(); }
+        try{
+          const p = video.play();
+          if(p && p.catch) p.catch(() => {});
+        }catch(err){}
       });
-      video.addEventListener('error', () => { showPoster(); });
-      setTimeout(() => { if (video.readyState < 3) { showPoster(); } }, 2500);
-    } else {
-      showPoster();
+    }
+
+    // HERO STATS: set counts from demo data
+    const jobsStat = document.querySelector('.stat-number[data-stat="jobs"]');
+    const profilesStat = document.querySelector('.stat-number[data-stat="profiles"]');
+    const localStat = document.querySelector('.stat-number[data-stat="local"]');
+    if(jobsStat) jobsStat.textContent = demoJobs.length.toString();
+    if(profilesStat) profilesStat.textContent = demoProfiles.length.toString();
+    if(localStat) localStat.textContent = '100%';
+
+    // Footer year
+    const yearSpan = document.getElementById('year-span');
+    if(yearSpan){
+      yearSpan.textContent = new Date().getFullYear().toString();
     }
   });
 })();
